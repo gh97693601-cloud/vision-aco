@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bases de Mesa — Vision Aço | Serralheria Premium</title>
+<meta name="description" content="Vision Aço — Bases de Mesa. A estrutura que sustenta o seu estilo. Para mesas de jantar e escritório sob medida.">
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1619247935960017');fbq('track','PageView');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#080808;--dark:#111;--dark2:#161616;--dark3:#1c1c1c;--accent:#2d7dd2;--accent2:#4a9eff;--white:#f4f4f4;--grey:#888;--border:rgba(255,255,255,0.08)}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
+img{display:block;max-width:100%}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,8,8,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:34px;object-fit:contain}
+.nav-wm{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:var(--white)}
+.nav-wm span{color:var(--accent2)}
+.nav-wa{display:flex;align-items:center;gap:7px;background:#25D366;color:#fff;text-decoration:none;padding:8px 18px;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:background .2s}
+.nav-wa:hover{background:#1fb958}
+
+/* CATEGORY HEADER */
+.cat-hero{padding:120px 40px 56px;background:var(--dark2);border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.cat-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 20% 50%,rgba(45,125,210,.1) 0%,transparent 70%)}
+.cat-hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--grey);text-decoration:none;border:1px solid var(--border);padding:9px 18px;border-radius:2px;transition:all .2s}
+.back-link:hover{color:var(--accent2);border-color:var(--accent2)}
+.cat-hero-title{}
+.cat-num{font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(45,125,210,.08);line-height:.8;letter-spacing:6px}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,68px);letter-spacing:3px;margin-top:-16px;line-height:1}
+.cat-name span{color:var(--accent2)}
+.cat-meta{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-top:8px}
+.cat-desc-text{font-size:14px;font-weight:300;color:rgba(255,255,255,.6);margin-top:6px;max-width:400px;line-height:1.7}
+.wa-cta{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:12px 24px;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.wa-cta:hover{background:#1fb958;transform:translateY(-2px)}
+
+/* PRODUCT GRID — 2 cols desktop, 2 cols mobile */
+.prod-section{padding:0;background:var(--black)}
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%}
+.prod-card{position:relative;aspect-ratio:1/1;overflow:hidden;cursor:pointer;background:var(--dark3)}
+.prod-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.prod-card:hover img{transform:scale(1.06)}
+.prod-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.92) 0%,rgba(0,0,0,.05) 50%,transparent 100%);opacity:0;transition:opacity .3s;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 26px}
+.prod-card:hover .prod-over{opacity:1}
+.prod-phrase{font-size:14px;font-weight:300;color:rgba(255,255,255,.9);line-height:1.5;margin-bottom:14px;max-width:380px}
+.prod-wa{display:inline-flex;align-items:center;gap:7px;background:#25D366;color:#fff;text-decoration:none;padding:10px 18px;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:all .2s;align-self:flex-start}
+.prod-wa:hover{background:#1fb958;transform:translateX(4px)}
+
+/* LIGHTBOX */
+.lb{display:none;position:fixed;inset:0;background:#000;z-index:9999;flex-direction:column}
+.lb.open{display:flex}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06)}
+.lb-counter{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;color:var(--grey)}
+.lb-x{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.lb-x:hover{background:rgba(255,255,255,.25)}
+.lb-mid{flex:1;display:flex;align-items:center;position:relative;min-height:0}
+.lb-img-wrap{flex:1;display:flex;align-items:center;justify-content:center;height:100%;padding:0 72px;min-height:0}
+.lb-img{max-width:100%;max-height:100%;object-fit:contain;display:block;transition:opacity .2s}
+.lb-arr{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;width:50px;height:50px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;transition:background .2s;user-select:none;line-height:1}
+.lb-arr:hover{background:rgba(255,255,255,.2)}
+#lb-prev{left:12px}
+#lb-next{right:12px}
+.lb-arr.off{opacity:.2;pointer-events:none}
+.lb-bot{flex-shrink:0;padding:16px 32px 22px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.lb-cat-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent2);margin-bottom:3px}
+.lb-phrase-text{font-size:14px;font-weight:300;color:rgba(255,255,255,.7);max-width:480px}
+.lb-wa-link{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:12px 26px;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;transition:background .2s}
+.lb-wa-link:hover{background:#1fb958}
+
+/* FLOAT WA */
+.fwa{position:fixed;bottom:26px;right:26px;z-index:900;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);text-decoration:none;transition:transform .25s}
+.fwa:hover{transform:scale(1.12)}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid var(--border);padding:36px 40px;text-align:center}
+footer p{font-size:12px;color:var(--grey)}
+
+@media(max-width:600px){
+  nav{padding:0 14px}
+  .cat-hero{padding:90px 20px 40px}
+  .cat-num{font-size:56px}
+  /* 2 cols on mobile gallery */
+  .prod-grid{grid-template-columns:1fr 1fr;gap:3px}
+  .prod-over{padding:14px}
+  .prod-phrase{font-size:12px;margin-bottom:10px}
+  .prod-wa{padding:8px 12px;font-size:10px}
+  .lb-img-wrap{padding:0 48px}
+  .lb-bot{flex-direction:column;align-items:flex-start;padding:12px 16px 18px}
+  footer{padding:24px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="imgs/logo.jpg" alt="Vision Aço" onerror="this.style.display='none'">
+    <span class="nav-wm">VISION <span>AÇO</span></span>
+  </a>
+  <a href="https://wa.me/5534988780922" target="_blank" rel="noopener" class="nav-wa">WhatsApp</a>
+</nav>
+
+<div class="cat-hero">
+  <div class="cat-hero-inner">
+    <div class="cat-hero-title">
+      <div class="cat-num">02</div>
+      <h1 class="cat-name">Bases de <span>Mesa</span></h1>
+      <p class="cat-meta" id="cat-count">carregando modelos...</p>
+      <p class="cat-desc-text">A estrutura que sustenta o seu estilo. Para mesas de jantar e escritório sob medida.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end">
+      <a href="index.html" class="back-link">&#8592; Voltar ao catálogo</a>
+      <a href="https://wa.me/5534988780922" target="_blank" rel="noopener" class="wa-cta">Pedir Orçamento</a>
+    </div>
+  </div>
+</div>
+
+<section class="prod-section">
+  <div class="prod-grid" id="prod-grid"></div>
+</section>
+
+<footer>
+  <p>© 2025 Vision Aço — Serralheria Premium | Uberlândia - MG</p>
+</footer>
+
+<a href="https://wa.me/5534988780922" target="_blank" rel="noopener" class="fwa" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <div class="lb-top">
+    <span class="lb-counter" id="lb-counter"></span>
+    <button class="lb-x" onclick="closeLb()">✕</button>
+  </div>
+  <div class="lb-mid">
+    <button class="lb-arr off" id="lb-prev" onclick="lbNav(-1)">&#8592;</button>
+    <div class="lb-img-wrap"><img class="lb-img" id="lb-img" src="" alt="Produto Vision Aço"></div>
+    <button class="lb-arr" id="lb-next" onclick="lbNav(1)">&#8594;</button>
+  </div>
+  <div class="lb-bot">
+    <div>
+      <p class="lb-cat-label">Bases de Mesa</p>
+      <p class="lb-phrase-text" id="lb-phrase"></p>
+    </div>
+    <a class="lb-wa-link" id="lb-wa" href="#" target="_blank" rel="noopener">Quero esse — Pedir Orçamento</a>
+  </div>
+</div>
+
+<script>
+var WA = '5534988780922';
+var catName = 'Bases de Mesa';
+var imgs = ["imgs/ba1.jpg", "imgs/ba2.jpg", "imgs/ba3.jpg", "imgs/ba4.jpg", "imgs/ba5.jpg", "imgs/ba6.jpg", "imgs/ba7.jpg", "imgs/ba8.jpg", "imgs/ba9.jpg", "imgs/ba10.jpg", "imgs/ba11.jpg", "imgs/ba12.jpg", "imgs/ba13.jpg", "imgs/ba14.jpg", "imgs/ba15.jpg", "imgs/ba16.jpg"];
+var phrases = ["A base que sustenta o seu estilo", "Estrutura em a\u00e7o para mesas \u00fanicas", "Geometria que suporta o extraordin\u00e1rio", "Design industrial de alto padr\u00e3o", "Base personalizada para a sua mesa", "A\u00e7o trabalhado com precis\u00e3o", "Forme sua mesa dos sonhos", "Resist\u00eancia e beleza em uma s\u00f3 pe\u00e7a", "Para mesas que impressionam", "Engenharia que vira decora\u00e7\u00e3o", "O p\u00e9 de mesa que faz a diferen\u00e7a", "Estrutura que define o ambiente", "Sua mesa, do seu jeito", "Base robusta, design delicado", "A\u00e7o que vai al\u00e9m do funcional", "Para refei\u00e7\u00f5es em grande estilo"];
+
+function waMsg(phrase) {
+  return 'https://wa.me/' + WA + '?text=' +
+    encodeURIComponent('Olá! Vi o catálogo da Vision Aço e tenho interesse neste produto:\n\n📦 *' + catName + '*\n✨ "' + phrase + '"\n\nGostaria de um orçamento!');
+}
+
+/* Update count */
+document.getElementById('cat-count').textContent = imgs.length + ' modelos disponíveis';
+
+/* Build grid */
+var grid = document.getElementById('prod-grid');
+var items = imgs.map(function(src, i) {
+  return { src: src, phrase: phrases[i % phrases.length], link: waMsg(phrases[i % phrases.length]) };
+});
+
+items.forEach(function(item, idx) {
+  var pc = document.createElement('div');
+  pc.className = 'prod-card';
+  var img = document.createElement('img');
+  img.src = item.src;
+  img.alt = catName + ' modelo ' + (idx + 1);
+  img.loading = 'lazy';
+  pc.appendChild(img);
+  var over = document.createElement('div');
+  over.className = 'prod-over';
+  var phrase = document.createElement('p');
+  phrase.className = 'prod-phrase';
+  phrase.textContent = item.phrase;
+  over.appendChild(phrase);
+  var waLink = document.createElement('a');
+  waLink.className = 'prod-wa';
+  waLink.href = item.link;
+  waLink.target = '_blank';
+  waLink.rel = 'noopener';
+  waLink.textContent = 'Quero esse';
+  waLink.addEventListener('click', function(e) { e.stopPropagation(); });
+  over.appendChild(waLink);
+  pc.appendChild(over);
+  pc.addEventListener('click', (function(ci) {
+    return function(e) {
+      if (e.target.closest('.prod-wa')) return;
+      openLb(ci);
+    };
+  })(idx));
+  grid.appendChild(pc);
+});
+
+/* Lightbox */
+var lbIdx = 0;
+function openLb(idx) {
+  lbIdx = idx;
+  renderLb();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (window.fbq) fbq('track', 'ViewContent', {content_name: catName});
+}
+function renderLb() {
+  var item = items[lbIdx];
+  var img = document.getElementById('lb-img');
+  img.style.opacity = '0';
+  img.src = item.src;
+  img.onload = function() { img.style.opacity = '1'; };
+  document.getElementById('lb-phrase').textContent = item.phrase;
+  document.getElementById('lb-wa').href = item.link;
+  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + items.length;
+  document.getElementById('lb-prev').classList.toggle('off', lbIdx <= 0);
+  document.getElementById('lb-next').classList.toggle('off', lbIdx >= items.length - 1);
+}
+function lbNav(d) {
+  var n = lbIdx + d;
+  if (n < 0 || n >= items.length) return;
+  lbIdx = n;
+  renderLb();
+}
+function closeLb() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lb').classList.contains('open')) return;
+  if (e.key === 'Escape') closeLb();
+  if (e.key === 'ArrowLeft') lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+});
+document.getElementById('lb').addEventListener('click', function(e) {
+  if (e.target === this) closeLb();
+});
+</script>
+</body>
+</html>
