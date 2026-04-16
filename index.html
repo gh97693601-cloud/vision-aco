@@ -57,12 +57,25 @@ nav{
   position:relative;overflow:hidden;
 }
 
+/* águia marca d'água — ::before, camada mais baixa */
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url('imgs/aguia.png') no-repeat center center;
+  background-size:contain;
+  opacity:0.06;
+  pointer-events:none;
+  z-index:0;
+}
+
 /* subtle gradient bg */
 .hero-bg{
   position:absolute;inset:0;
   background:
     radial-gradient(ellipse 70% 60% at 60% 40%, rgba(45,125,210,.12) 0%, transparent 65%),
     radial-gradient(ellipse 50% 70% at 10% 90%, rgba(45,125,210,.06) 0%, transparent 60%);
+  z-index:1;
 }
 
 /* grid lines */
@@ -72,19 +85,6 @@ nav{
     linear-gradient(rgba(45,125,210,.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(45,125,210,.04) 1px, transparent 1px);
   background-size:64px 64px;
-}
-
-/* águia marca d'água via pseudo-elemento — ATRÁS de tudo */
-.hero::after{
-  content:'';
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  width:min(65vw, 560px);
-  aspect-ratio:1/1;
-  background:url('imgs/aguia.png') no-repeat center/contain;
-  opacity:0.08;
-  pointer-events:none;
   z-index:1;
 }
 
@@ -281,7 +281,6 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 4
   .fbot{flex-direction:column;align-items:flex-start}
   .sec-header{padding:52px 20px 36px}
   /* águia menor no mobile */
-  .hero::after{width:90vw}
   .ticker-name{font-size:16px}
   .hero-hint{font-size:12px;max-width:280px}
 }
@@ -289,7 +288,6 @@ footer{background:var(--black);border-top:1px solid var(--border);padding:60px 4
   nav{padding:0 24px}
   .nav-links{display:none}
   .cat-card{height:280px}
-  .hero::after{width:70vw}
 }
 </style>
 </head>
