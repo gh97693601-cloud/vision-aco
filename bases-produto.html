@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Bases de Mesa — Vision Aço</title>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1619247935960017');fbq('track','PageView');</script><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--black:#080808;--dark:#111;--dark2:#161616;--dark3:#1c1c1c;--accent:#2d7dd2;--accent2:#4a9eff;--white:#f4f4f4;--grey:#888;--border:rgba(255,255,255,0.08)}
 html{scroll-behavior:smooth}
 body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden}
@@ -39,16 +38,13 @@ footer p{font-size:11px;color:rgba(136,136,136,.6)}
 .colors{display:flex;align-items:center;gap:10px}
 .color-dot{width:30px;height:30px;border-radius:50%;background:#111;box-shadow:0 0 0 1px rgba(255,255,255,.2);border:3px solid var(--accent2)}
 .color-label{font-size:13px;font-weight:300;color:var(--grey)}
-/* MEDIDAS BOX */
 .measure-box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:3px;padding:16px;display:flex;flex-direction:column;gap:12px}
 .measure-title{font-size:14px;font-weight:700;color:#ffffff;letter-spacing:.3px}
-/* PRESETS */
 .presets-wrap{display:flex;flex-direction:column;gap:8px}
 .presets{display:flex;flex-wrap:wrap;gap:8px}
 .preset-btn{background:#111;color:var(--white);border:1px solid rgba(74,158,255,.3);border-radius:6px;padding:8px 14px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;cursor:pointer;transition:all .2s;white-space:nowrap}
 .preset-btn:hover{background:rgba(45,125,210,.2);border-color:var(--accent2);color:var(--accent2);transform:translateY(-1px)}
 .preset-btn.active{background:rgba(45,125,210,.25);border-color:var(--accent2);color:var(--accent2)}
-/* FIELDS */
 .fields-group{display:flex;flex-direction:column;gap:10px}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45)}
@@ -57,7 +53,6 @@ footer p{font-size:11px;color:rgba(136,136,136,.6)}
 .field input.err{border-color:#e55}
 .obs-area{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:2px;padding:10px 12px;font-family:'Barlow',sans-serif;font-size:13px;color:var(--white);outline:none;width:100%;resize:none;height:60px;transition:border .2s}
 .obs-area:focus{border-color:var(--accent2)}
-/* SEND */
 .send-btn{display:flex;align-items:center;justify-content:center;gap:10px;background:#25D366;color:#fff;border:none;padding:15px;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;width:100%;transition:all .25s}
 .send-btn:hover{background:#1fb958;transform:translateY(-2px)}
 @media(max-width:700px){
@@ -66,8 +61,7 @@ footer p{font-size:11px;color:rgba(136,136,136,.6)}
   .detail-title{font-size:28px}
   .thumb{width:44px;height:44px}
   .preset-btn{font-size:11px;padding:7px 11px}
-}
-</style>
+}</style>
 </head>
 <body>
 <nav>
@@ -78,20 +72,17 @@ footer p{font-size:11px;color:rgba(136,136,136,.6)}
   <a href="https://wa.me/5534988780922" target="_blank" class="nav-wa">WhatsApp</a>
 </nav>
 <div class="detail-wrap">
-  <!-- FOTO -->
   <div>
-    <div class="detail-img-main"><img id="main-img" src="" alt=""></div>
+    <div class="detail-img-main"><img id="mi" src="" alt=""></div>
     <div class="thumbs" id="thumbs"></div>
   </div>
-  <!-- INFO -->
   <div class="detail-info">
     <a href="bases.html" class="detail-back">&#8592; Ver todos os modelos</a>
     <div>
-      <span class="detail-badge" id="d-badge"></span>
+      <span class="detail-badge" id="badge"></span>
       <h1 class="detail-title">Bases de Mesa</h1>
     </div>
-    <p class="detail-desc">Base de mesa em aço com pintura eletrostática. Estrutura robusta e design industrial, produzida sob medida para qualquer tampo.</p>
-    <!-- COR -->
+    <p class="detail-desc">Base de mesa em aço com acabamento premium. Estrutura robusta e design industrial, produzida sob medida para qualquer tampo.</p>
     <div>
       <span class="section-label">Cor disponível</span>
       <div class="colors">
@@ -99,29 +90,28 @@ footer p{font-size:11px;color:rgba(136,136,136,.6)}
         <span class="color-label">Preto</span>
       </div>
     </div>
-    <!-- MEDIDAS -->
     <div class="measure-box">
       <p class="measure-title">📐 Informe as medidas desejadas</p>
-      
-    <div class="presets-wrap">
-      <span class="section-label">Medidas mais pedidas</span>
-      <div class="presets">
-        <button class="preset-btn" data-l="120" data-c="70" data-a="80">1,20 × 0,70 × 0,80</button>
-        <button class="preset-btn" data-l="160" data-c="80" data-a="80">1,60 × 0,80 × 0,80</button>
-        <button class="preset-btn" data-l="200" data-c="90" data-a="80">2,00 × 0,90 × 0,80</button>
-        <button class="preset-btn" data-l="280" data-c="100" data-a="90">2,80 × 1,00 × 0,90</button>
+      <div class="presets-wrap">
+        <span class="section-label">Medidas mais pedidas</span>
+        <div class="presets">
+          <button class="preset-btn" data-l="120" data-c="70" data-a="80">1,20 × 0,70 × 0,80</button>
+          <button class="preset-btn" data-l="160" data-c="80" data-a="80">1,60 × 0,80 × 0,80</button>
+          <button class="preset-btn" data-l="200" data-c="90" data-a="80">2,00 × 0,90 × 0,80</button>
+          <button class="preset-btn" data-l="280" data-c="100" data-a="90">2,80 × 1,00 × 0,90</button>
+        </div>
       </div>
-    </div>
       <div class="fields-group" id="fields"></div>
       <div>
         <label class="section-label" style="margin-bottom:4px">Observações (opcional)</label>
         <textarea class="obs-area" id="obs" placeholder="Alguma informação adicional..."></textarea>
       </div>
     </div>
-    <button class="send-btn" id="send-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>&nbsp; Solicitar Orçamento</button>
+    <button class="send-btn" id="sbtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>&nbsp; Solicitar Orçamento</button>
   </div>
 </div>
-<a href="https://wa.me/5534988780922" target="_blank" class="fwa"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a><footer><p>© 2025 Vision Aço — Serralheria Premium | Uberlândia - MG</p></footer>
+<a href="https://wa.me/5534988780922" target="_blank" class="fwa"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<footer><p>© 2025 Vision Aço — Serralheria Premium | Uberlândia - MG</p></footer>
 <script>
 var WA='5534988780922',CAT='Bases de Mesa';
 var imgs=["imgs/ba2.jpg", "imgs/ba3.jpg", "imgs/ba4.jpg", "imgs/ba5.jpg", "imgs/ba6.jpg", "imgs/ba7.jpg", "imgs/ba8.jpg", "imgs/ba9.jpg", "imgs/ba10.jpg", "imgs/ba11.jpg", "imgs/ba12.jpg", "imgs/ba13.jpg"];
@@ -131,26 +121,24 @@ var params=new URLSearchParams(window.location.search);
 var idx=parseInt(params.get('p'))||0;
 if(idx<0||idx>=imgs.length)idx=0;
 function code(i){return String(i+1).padStart(2,'0');}
-// main image
-var mainImg=document.getElementById('main-img');
-mainImg.src=imgs[idx]; mainImg.alt=CAT+' '+code(idx);
-document.getElementById('d-badge').textContent=code(idx);
+var mi=document.getElementById('mi');
+mi.src=imgs[idx]; mi.alt=CAT+' '+code(idx);
+document.getElementById('badge').textContent=code(idx);
 document.title=code(idx)+' — '+CAT+' — Vision Aço';
-// thumbs
-var thumbsDiv=document.getElementById('thumbs');
-var start=Math.max(0,idx-2),end=Math.min(imgs.length,start+5);
-for(var t=start;t<end;t++){
+var td=document.getElementById('thumbs');
+var s=Math.max(0,idx-2),e=Math.min(imgs.length,s+5);
+for(var t=s;t<e;t++){
   (function(ti){
     var th=document.createElement('div');
     th.className='thumb'+(ti===idx?' active':'');
     th.innerHTML='<img src="'+imgs[ti]+'" loading="lazy">';
     th.addEventListener('click',function(){window.location.href=window.location.pathname+'?p='+ti;});
-    thumbsDiv.appendChild(th);
+    td.appendChild(th);
   })(t);
 }
-// fields
 var inputs=[];
-var fieldsDiv=document.getElementById('fields');
+var fd=document.getElementById('fields');
+fd.style.cssText='display:flex;flex-direction:column;gap:10px';
 fieldNames.forEach(function(label){
   var row=document.createElement('div');
   row.className='field';
@@ -160,24 +148,22 @@ fieldNames.forEach(function(label){
   inp.type='text';
   inp.placeholder='Ex: '+(label.indexOf('Largura')>=0?'120':label.indexOf('Comprimento')>=0?'200':'75')+' cm';
   inputs.push(inp);
-  row.appendChild(lbl); row.appendChild(inp);
-  fieldsDiv.appendChild(row);
+  row.appendChild(lbl);row.appendChild(inp);fd.appendChild(row);
 });
 
   document.querySelectorAll('.preset-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-      if(inputs[0]) inputs[0].value = btn.dataset.l;
-      if(inputs[1]) inputs[1].value = btn.dataset.c;
-      if(inputs[2]) inputs[2].value = btn.dataset.a;
+      if(inputs[0]) inputs[0].value=btn.dataset.l;
+      if(inputs[1]) inputs[1].value=btn.dataset.c;
+      if(inputs[2]) inputs[2].value=btn.dataset.a;
       document.querySelectorAll('.preset-btn').forEach(function(b){b.classList.remove('active');});
       btn.classList.add('active');
     });
   });
-// send
-document.getElementById('send-btn').addEventListener('click',function(){
+document.getElementById('sbtn').addEventListener('click',function(){
   var ok=true;
   inputs.forEach(function(inp){inp.classList.remove('err');if(!inp.value.trim()){inp.classList.add('err');ok=false;}});
-  if(!ok){alert('Por favor, preencha todas as medidas obrigatórias (*)');return;}
+  if(!ok){alert('Por favor, preencha todas as medidas (*)');return;}
   var obs=document.getElementById('obs').value.trim();
   var msg='Olá! Tenho interesse em um produto da Vision Aço:\n\n';
   msg+='📦 Produto: *'+CAT+'*\n';
