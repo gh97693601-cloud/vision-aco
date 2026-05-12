@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produto — Vision Aço</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;--dark:#0f0f0f;--dark2:#141414;--dark3:#1a1a1a;--dark4:#222;
+  --accent:#2d7dd2;--accent2:#4a9eff;--green:#10b981;
+  --white:#f0f0f0;--grey:#777;--grey2:#444;--border:rgba(255,255,255,.07);--radius:3px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(8,8,8,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo-mark{width:32px;height:32px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;border-radius:2px}
+.nav-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px}
+.nav-name span{color:var(--accent2)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-cart{position:relative;width:38px;height:38px;border:1px solid var(--border);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--grey);transition:all .2s}
+.nav-cart:hover{border-color:var(--accent2);color:var(--white)}
+.cart-badge{position:absolute;top:-5px;right:-5px;width:16px;height:16px;background:var(--accent);border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif}
+.nav-wa{display:flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:7px 14px;border-radius:var(--radius);font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.nav-wa:hover{background:#1fb958}
+
+/* BREADCRUMB */
+.breadcrumb-bar{
+  margin-top:62px;padding:14px 32px;
+  border-bottom:1px solid var(--border);background:var(--dark2);
+}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--grey)}
+.breadcrumb a{color:var(--accent2);transition:opacity .2s}
+.breadcrumb a:hover{opacity:.7}
+.breadcrumb span{opacity:.3}
+
+/* PRODUCT LAYOUT */
+.product-section{
+  max-width:1200px;margin:0 auto;
+  padding:40px 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;
+  align-items:start;
+}
+
+/* ── IMAGE GALLERY ── */
+.gallery{position:sticky;top:80px}
+.main-img{
+  aspect-ratio:1/1;background:var(--dark3);
+  border-radius:var(--radius);overflow:hidden;
+  position:relative;margin-bottom:12px;
+}
+.main-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+.main-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.gallery-ph{display:flex;flex-direction:column;align-items:center;gap:10px}
+.gallery-ph-box{width:80px;height:80px;border:2px solid rgba(255,255,255,.1);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.gallery-ph-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.15);text-transform:uppercase}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.thumb{
+  aspect-ratio:1/1;background:var(--dark3);border-radius:2px;overflow:hidden;
+  cursor:pointer;border:2px solid transparent;transition:border-color .2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.thumb.active{border-color:var(--accent)}
+.thumb:hover{border-color:var(--grey2)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb-ph{font-size:9px;font-family:'Barlow Condensed',sans-serif;letter-spacing:1px;color:rgba(255,255,255,.15)}
+
+/* ── PRODUCT INFO ── */
+.prod-info{}
+.prod-badges{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.badge{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:2px;
+}
+.badge-blue{background:var(--accent-dim,rgba(45,125,210,.15));color:var(--accent2);border:1px solid rgba(45,125,210,.3)}
+.badge-green{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.25)}
+
+.prod-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(28px,4vw,44px);letter-spacing:2px;line-height:1;
+  margin-bottom:14px;
+}
+.prod-stars{
+  display:flex;align-items:center;gap:8px;margin-bottom:20px;
+}
+.stars-row{color:#f59e0b;font-size:14px;letter-spacing:2px}
+.stars-count{font-size:12px;color:var(--grey)}
+.stars-link{font-size:12px;color:var(--accent2);cursor:pointer}
+
+/* PRICING */
+.pricing{
+  background:var(--dark2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;margin-bottom:24px;
+}
+.price-installment{font-size:13px;color:var(--grey);margin-bottom:4px}
+.price-main{
+  font-family:'Bebas Neue',sans-serif;font-size:42px;
+  color:var(--white);letter-spacing:2px;line-height:1;
+  margin-bottom:8px;
+}
+.price-pix-row{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.15);
+  border-radius:2px;padding:8px 12px;
+}
+.pix-icon{font-size:16px}
+.pix-label{font-size:12px;color:var(--grey)}
+.pix-price{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);letter-spacing:1px}
+.pix-discount{
+  background:var(--green);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:1px;padding:2px 6px;border-radius:2px;margin-left:auto;
+}
+
+/* VARIATIONS */
+.var-section{margin-bottom:20px}
+.var-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;color:var(--grey);
+  margin-bottom:10px;display:flex;align-items:center;gap:8px;
+}
+.var-label strong{color:var(--white);font-weight:600}
+.var-btns{display:flex;gap:6px;flex-wrap:wrap}
+.var-btn{
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:1.5px solid var(--border);background:transparent;color:var(--grey);
+  padding:8px 16px;border-radius:var(--radius);cursor:pointer;transition:all .2s;
+}
+.var-btn:hover{border-color:var(--accent2);color:var(--white)}
+.var-btn.active{border-color:var(--accent);background:rgba(45,125,210,.1);color:var(--accent2)}
+.color-btns{display:flex;gap:8px;flex-wrap:wrap}
+.color-btn{
+  width:32px;height:32px;border-radius:50%;cursor:pointer;
+  border:2px solid transparent;transition:all .2s;position:relative;
+}
+.color-btn.active{border-color:var(--white)}
+.color-btn::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid transparent;transition:border-color .2s;
+}
+.color-btn.active::after{border-color:var(--accent2)}
+
+/* QTY */
+.qty-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.qty-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--grey)}
+.qty-ctrl{display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.qty-btn{
+  width:38px;height:38px;background:var(--dark3);color:var(--white);
+  border:none;cursor:pointer;font-size:18px;transition:background .2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.qty-btn:hover{background:var(--dark4)}
+.qty-val{
+  width:48px;height:38px;background:var(--dark2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;
+  border-left:1px solid var(--border);border-right:1px solid var(--border);
+}
+
+/* CTA BUTTONS */
+.cta-buttons{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.btn-comprar{
+  width:100%;padding:17px;border-radius:var(--radius);
+  background:var(--accent);color:#fff;border:none;cursor:pointer;
+  font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;
+  transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.btn-comprar:hover{background:var(--accent2);transform:translateY(-2px)}
+.btn-comprar-wa{
+  width:100%;padding:13px;border-radius:var(--radius);
+  background:#25D366;color:#fff;border:none;cursor:pointer;
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  transition:all .25s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.btn-comprar-wa:hover{background:#1fb958}
+
+/* TRUST BADGES */
+.trust-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:8px;
+  margin-bottom:24px;
+}
+.trust-item{
+  display:flex;align-items:center;gap:10px;
+  background:var(--dark2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:12px;
+}
+.trust-icon{color:var(--accent2);flex-shrink:0}
+.trust-text strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white)}
+.trust-text span{font-size:10px;color:var(--grey)}
+
+/* ACCORDIONS */
+.accordions{border-top:1px solid var(--border)}
+.accordion{border-bottom:1px solid var(--border)}
+.accordion-header{
+  width:100%;background:none;border:none;color:var(--white);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 0;cursor:pointer;text-align:left;
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;transition:color .2s;
+}
+.accordion-header:hover{color:var(--accent2)}
+.acc-icon{
+  width:22px;height:22px;border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;transition:transform .3s,border-color .2s;flex-shrink:0;
+}
+.accordion.open .acc-icon{transform:rotate(45deg);border-color:var(--accent)}
+.accordion-body{
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.accordion.open .accordion-body{max-height:400px}
+.accordion-body-inner{
+  padding:0 0 20px;
+  font-size:13px;font-weight:300;color:var(--grey);line-height:1.85;
+}
+.accordion-body-inner ul{padding-left:16px;margin-top:8px}
+.accordion-body-inner li{margin-bottom:6px}
+
+/* WA BLOCK */
+.wa-block{
+  background:var(--dark2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:24px;text-align:center;margin-top:32px;
+}
+.wa-block h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;margin-bottom:6px}
+.wa-block p{font-size:13px;color:var(--grey);margin-bottom:16px}
+.btn-wa-full{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  padding:13px 28px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;transition:background .2s;
+}
+.btn-wa-full:hover{background:#1fb958}
+
+/* FLOAT WA */
+.fwa{position:fixed;bottom:24px;right:24px;z-index:900;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.4);transition:transform .2s;text-decoration:none}
+.fwa:hover{transform:scale(1.1)}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--border);padding:28px 32px;text-align:center;margin-top:60px}
+footer p{font-size:11px;color:rgba(100,100,100,.6)}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:0 14px}
+  .breadcrumb-bar{padding:12px 16px}
+  .product-section{grid-template-columns:1fr;gap:28px;padding:24px 16px}
+  .gallery{position:static}
+  .trust-grid{grid-template-columns:repeat(2,1fr)}
+  .price-main{font-size:36px}
+}
+@media(max-width:400px){
+  .trust-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark">V</div>
+    <span class="nav-name">VISION <span>AÇO</span></span>
+  </a>
+  <div class="nav-right">
+    <a href="carrinho.html" class="nav-cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </a>
+    <a href="https://wa.me/5534988780922" target="_blank" class="nav-wa">WhatsApp</a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb">
+    <a href="index.html">Início</a>
+    <span>/</span>
+    <a href="categoria.html" id="bc-cat">Categoria</a>
+    <span>/</span>
+    <span id="bc-prod">Produto</span>
+  </div>
+</div>
+
+<!-- PRODUCT -->
+<div class="product-section">
+
+  <!-- GALERIA -->
+  <div class="gallery">
+    <div class="main-img">
+      <div class="main-img-inner" id="main-img-inner">
+        <div class="gallery-ph">
+          <div class="gallery-ph-box">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          </div>
+          <span class="gallery-ph-label">Imagem principal</span>
+        </div>
+      </div>
+    </div>
+    <div class="thumbs" id="thumbs">
+      <div class="thumb active"><span class="thumb-ph">01</span></div>
+      <div class="thumb"><span class="thumb-ph">02</span></div>
+      <div class="thumb"><span class="thumb-ph">03</span></div>
+      <div class="thumb"><span class="thumb-ph">04</span></div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="prod-info">
+
+    <div class="prod-badges">
+      <span class="badge badge-blue" id="badge-cat">Categoria</span>
+      <span class="badge badge-green">Em Estoque</span>
+    </div>
+
+    <h1 class="prod-name" id="prod-name">Nome do Produto</h1>
+
+    <div class="prod-stars">
+      <span class="stars-row">★★★★★</span>
+      <span class="stars-count">5.0</span>
+      <span class="stars-link">(ver avaliações)</span>
+    </div>
+
+    <!-- PREÇOS -->
+    <div class="pricing">
+      <div class="price-installment" id="price-install">12x de R$ —,——</div>
+      <div class="price-main" id="price-main">R$ ———</div>
+      <div class="price-pix-row">
+        <span class="pix-icon">🔵</span>
+        <span class="pix-label">No Pix:</span>
+        <span class="pix-price" id="price-pix">R$ ———</span>
+        <span class="pix-discount" id="pix-discount">—% OFF</span>
+      </div>
+    </div>
+
+    <!-- TAMANHO -->
+    <div class="var-section">
+      <div class="var-label">Tamanho: <strong id="size-selected">—</strong></div>
+      <div class="var-btns" id="size-btns">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+
+    <!-- COR -->
+    <div class="var-section">
+      <div class="var-label">Cor: <strong id="color-selected">—</strong></div>
+      <div class="color-btns" id="color-btns">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+
+    <!-- TIPO -->
+    <div class="var-section">
+      <div class="var-label">Tipo: <strong id="type-selected">—</strong></div>
+      <div class="var-btns" id="type-btns">
+        <!-- preenchido via JS -->
+      </div>
+    </div>
+
+    <!-- QUANTIDADE -->
+    <div class="qty-row">
+      <span class="qty-label">Quantidade:</span>
+      <div class="qty-ctrl">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <div class="qty-val" id="qty-val">1</div>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-buttons">
+      <button class="btn-comprar" onclick="addToCart()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        COMPRAR AGORA
+      </button>
+      <button class="btn-comprar-wa" id="wa-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Pedir pelo WhatsApp
+      </button>
+    </div>
+
+    <!-- CONFIANÇA -->
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div class="trust-text"><strong>Frete Brasil</strong><span>Entrega nacional</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="trust-text"><strong>Garantia</strong><span>Qualidade Vision Aço</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="trust-text"><strong>Premium</strong><span>Aço de alta resistência</span></div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="trust-text"><strong>Montagem fácil</strong><span>Instruções inclusas</span></div>
+      </div>
+    </div>
+
+    <!-- ACORDEÕES -->
+    <div class="accordions">
+      <div class="accordion" id="acc1">
+        <button class="accordion-header" onclick="toggleAcc('acc1')">
+          <span>Detalhes do produto</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner" id="acc1-body">
+            <p>As informações detalhadas do produto serão adicionadas aqui. Inclua: materiais, dimensões, peso, acabamentos disponíveis, e especificações técnicas.</p>
+            <ul>
+              <li>Material: Aço carbono / Ferro</li>
+              <li>Acabamento: Pintura eletrostática</li>
+              <li>Dimensões: A definir</li>
+              <li>Peso: A definir</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion" id="acc2">
+        <button class="accordion-header" onclick="toggleAcc('acc2')">
+          <span>Como montar</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Instruções de montagem serão adicionadas aqui. O produto acompanha manual ilustrado com passo a passo simplificado.</p>
+            <ul>
+              <li>Ferramentas necessárias: chave allen (inclusa)</li>
+              <li>Tempo estimado: 15-30 minutos</li>
+              <li>Suporte via WhatsApp disponível</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion" id="acc3">
+        <button class="accordion-header" onclick="toggleAcc('acc3')">
+          <span>Envio e entrega</span>
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <p>Realizamos entregas para todo o Brasil. Prazo e frete calculados no checkout conforme o CEP.</p>
+            <ul>
+              <li>Embalagem reforçada antiimpacto</li>
+              <li>Rastreamento em tempo real</li>
+              <li>Seguro de transporte incluso</li>
+              <li>Prazo: 7 a 20 dias úteis conforme região</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DÚVIDAS -->
+    <div class="wa-block">
+      <h3>Está com alguma dúvida?</h3>
+      <p>Fale diretamente com a nossa equipe pelo WhatsApp e tire todas as suas dúvidas sobre o produto.</p>
+      <a href="https://wa.me/5534988780922" target="_blank" class="btn-wa-full" id="wa-doubt-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 Vision Aço — Serralheria Premium | Uberlândia - MG</p>
+</footer>
+
+<a href="https://wa.me/5534988780922" target="_blank" class="fwa" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── PRODUTO CONFIG ──
+// Edite este objeto para configurar o produto
+var PRODUTO = {
+  id: 'prod-001',
+  name: 'Nome do Produto',
+  categoria: 'Categoria',
+  priceMain: 'R$ 890',
+  priceInstall: '12x de R$ 74,16',
+  pricePix: 'R$ 801',
+  pixDiscount: '10% OFF',
+  sizes: ['Pequeno', 'Médio', 'Grande'],
+  colors: [
+    {name:'Preto Fosco', hex:'#1a1a1a'},
+    {name:'Preto Brilhante', hex:'#0a0a0a'},
+    {name:'Cinza', hex:'#555'},
+  ],
+  types: ['Com tampo', 'Sem tampo'],
+  images: [] // preencher com caminhos das imagens
+};
+
+// Aplicar dados
+document.getElementById('prod-name').textContent = PRODUTO.name;
+document.getElementById('bc-prod').textContent = PRODUTO.name;
+document.getElementById('bc-cat').textContent = PRODUTO.categoria;
+document.getElementById('badge-cat').textContent = PRODUTO.categoria;
+document.getElementById('price-main').textContent = PRODUTO.priceMain;
+document.getElementById('price-install').textContent = PRODUTO.priceInstall;
+document.getElementById('price-pix').textContent = PRODUTO.pricePix;
+document.getElementById('pix-discount').textContent = PRODUTO.pixDiscount;
+
+// Imagens
+if (PRODUTO.images.length > 0) {
+  var main = document.getElementById('main-img-inner');
+  main.innerHTML = '<img src="' + PRODUTO.images[0] + '" alt="' + PRODUTO.name + '">';
+  var thumbsEl = document.getElementById('thumbs');
+  thumbsEl.innerHTML = '';
+  PRODUTO.images.forEach(function(src, i) {
+    var t = document.createElement('div');
+    t.className = 'thumb' + (i===0?' active':'');
+    t.innerHTML = '<img src="' + src + '" alt="' + PRODUTO.name + ' ' + (i+1) + '">';
+    t.addEventListener('click', function() {
+      document.querySelectorAll('.thumb').forEach(function(th){th.classList.remove('active')});
+      t.classList.add('active');
+      main.innerHTML = '<img src="' + src + '" alt="' + PRODUTO.name + '">';
+    });
+    thumbsEl.appendChild(t);
+  });
+}
+
+// Tamanhos
+var sizeSel = document.getElementById('size-selected');
+var sizeBtns = document.getElementById('size-btns');
+PRODUTO.sizes.forEach(function(s, i) {
+  var btn = document.createElement('button');
+  btn.className = 'var-btn' + (i===0?' active':'');
+  btn.textContent = s;
+  if (i===0) sizeSel.textContent = s;
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('#size-btns .var-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    sizeSel.textContent = s;
+  });
+  sizeBtns.appendChild(btn);
+});
+
+// Cores
+var colorSel = document.getElementById('color-selected');
+var colorBtns = document.getElementById('color-btns');
+PRODUTO.colors.forEach(function(c, i) {
+  var btn = document.createElement('div');
+  btn.className = 'color-btn' + (i===0?' active':'');
+  btn.style.background = c.hex;
+  btn.title = c.name;
+  if (i===0) colorSel.textContent = c.name;
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.color-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    colorSel.textContent = c.name;
+  });
+  colorBtns.appendChild(btn);
+});
+
+// Tipos
+var typeSel = document.getElementById('type-selected');
+var typeBtns = document.getElementById('type-btns');
+PRODUTO.types.forEach(function(t, i) {
+  var btn = document.createElement('button');
+  btn.className = 'var-btn' + (i===0?' active':'');
+  btn.textContent = t;
+  if (i===0) typeSel.textContent = t;
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('#type-btns .var-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    typeSel.textContent = t;
+  });
+  typeBtns.appendChild(btn);
+});
+
+// Quantidade
+var qty = 1;
+function changeQty(dir) {
+  qty = Math.max(1, qty + dir);
+  document.getElementById('qty-val').textContent = qty;
+}
+
+// Carrinho
+function addToCart() {
+  alert('Produto adicionado ao carrinho!\n\nEsta funcionalidade será integrada ao sistema de pagamento.');
+}
+
+// WhatsApp
+var waMsg = 'Olá! Tenho interesse no produto: ' + PRODUTO.name + '. Gostaria de um orçamento!';
+document.getElementById('wa-btn').onclick = function() {
+  window.open('https://wa.me/5534988780922?text=' + encodeURIComponent(waMsg), '_blank');
+};
+document.getElementById('wa-doubt-btn').href = 'https://wa.me/5534988780922?text=' + encodeURIComponent('Olá! Tenho uma dúvida sobre o produto: ' + PRODUTO.name);
+
+// Acordeões
+function toggleAcc(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>

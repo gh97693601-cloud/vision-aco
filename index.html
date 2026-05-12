@@ -3,268 +3,658 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vision Aço – Serralheria em Uberlândia</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Vision Aço — Serralheria Premium</title>
+<meta name="description" content="Móveis metálicos premium sob medida. Bases de mesa, estantes, prateleiras e mesas com design industrial exclusivo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #080808;
-    --blue: #2d7dd2;
-    --blue-light: #4a9eff;
-    --white: #ffffff;
-    --gray: #aaaaaa;
-    --card-bg: #111111;
-    --border: #1e1e1e;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--white); font-family: 'Barlow', sans-serif; overflow-x: hidden; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#080808;--dark:#0f0f0f;--dark2:#141414;--dark3:#1a1a1a;--dark4:#222;
+  --accent:#2d7dd2;--accent2:#4a9eff;--accent-dim:rgba(45,125,210,.15);
+  --white:#f0f0f0;--grey:#777;--grey2:#555;--border:rgba(255,255,255,.07);
+  --radius:3px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 40px; height: 64px;
-    background: rgba(8,8,8,0.92); backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 3px; }
-  .nav-logo span { color: var(--blue-light); }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { color: var(--gray); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-whatsapp {
-    background: var(--blue); color: var(--white); text-decoration: none;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-    padding: 8px 20px; transition: background 0.2s;
-  }
-  .nav-whatsapp:hover { background: var(--blue-light); }
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:62px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;
+  background:rgba(8,8,8,.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand{display:flex;align-items:center;gap:10px}
+.nav-logo-mark{
+  width:32px;height:32px;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:#fff;
+  border-radius:2px;
+}
+.nav-name{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px}
+.nav-name span{color:var(--accent2)}
+.nav-center{display:flex;gap:28px;list-style:none}
+.nav-center a{
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--grey);transition:color .2s;
+}
+.nav-center a:hover{color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-cart{
+  position:relative;width:38px;height:38px;border:1px solid var(--border);
+  border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:border-color .2s;color:var(--grey);
+}
+.nav-cart:hover{border-color:var(--accent2);color:var(--white)}
+.cart-badge{
+  position:absolute;top:-5px;right:-5px;
+  width:16px;height:16px;background:var(--accent);border-radius:50%;
+  font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;
+}
+.nav-wa{
+  display:flex;align-items:center;gap:6px;
+  background:#25D366;color:#fff;
+  padding:7px 14px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;transition:background .2s;
+}
+.nav-wa:hover{background:#1fb958}
 
-  /* HERO */
-  .hero {
-    position: relative; height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center;
-    overflow: hidden;
-  }
-  .hero-eagle {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    pointer-events: none; z-index: 0;
-  }
-  .hero-eagle img { width: 60%; max-width: 700px; opacity: 0.06; filter: grayscale(1); }
-  .hero-content { position: relative; z-index: 1; }
-  .hero-ticker {
-    font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 12vw, 10rem);
-    letter-spacing: 8px; line-height: 1; margin-bottom: 24px;
-  }
-  .hero-ticker .blue { color: var(--blue-light); }
-  .hero-sub {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--gray); margin-bottom: 40px;
-  }
-  .hero-btn {
-    display: inline-block; border: 1px solid var(--blue); color: var(--white);
-    text-decoration: none; font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase;
-    padding: 14px 40px; transition: all 0.3s;
-  }
-  .hero-btn:hover { background: var(--blue); }
-  .hero-hint { margin-top: 12px; font-size: 0.75rem; color: #444; letter-spacing: 2px; font-family: 'Barlow Condensed', sans-serif; }
+/* ─── HERO ─── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:80px 24px 0;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 35%, rgba(45,125,210,.13) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(45,125,210,.07) 0%, transparent 55%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(45,125,210,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(45,125,210,.035) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+.hero-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:3;
+  text-align:center;max-width:900px;
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  flex:1;justify-content:center;
+}
+.hero-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:5px;text-transform:uppercase;color:var(--accent2);
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp .6s .1s forwards;
+  display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';display:block;width:32px;height:1px;background:var(--accent2);opacity:.5;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(52px,9vw,110px);
+  letter-spacing:3px;line-height:.92;
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp .7s .25s forwards;
+}
+.hero-title em{color:var(--accent2);font-style:normal;display:block}
+.hero-sub{
+  font-size:16px;font-weight:300;color:var(--grey);
+  max-width:480px;line-height:1.85;margin-bottom:44px;
+  opacity:0;animation:fadeUp .7s .4s forwards;
+}
+.hero-actions{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:fadeUp .7s .55s forwards;
+  margin-bottom:28px;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#fff;
+  padding:14px 36px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  transition:all .25s;border:2px solid var(--accent);
+}
+.btn-primary:hover{background:var(--accent2);border-color:var(--accent2);transform:translateY(-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--white);
+  padding:14px 36px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  transition:all .25s;border:2px solid var(--border);
+}
+.btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.04)}
+.hero-hint{
+  font-size:12px;color:var(--grey2);letter-spacing:.3px;
+  opacity:0;animation:fadeUp .7s .7s forwards;
+  margin-bottom:0;
+}
 
-  /* SECTION */
-  section { padding: 80px 40px; max-width: 1400px; margin: 0 auto; }
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem);
-    letter-spacing: 4px; margin-bottom: 8px;
-  }
-  .section-title span { color: var(--blue-light); }
-  .section-line { width: 48px; height: 2px; background: var(--blue); margin-bottom: 48px; }
+/* TICKER */
+.ticker-wrap{
+  width:100%;overflow:hidden;
+  background:rgba(45,125,210,.07);
+  border-top:1px solid rgba(45,125,210,.2);
+  border-bottom:1px solid rgba(45,125,210,.2);
+  padding:12px 0;position:relative;z-index:3;
+  opacity:0;animation:fadeIn 1s .9s forwards;
+  margin-top:auto;
+}
+.ticker-track{display:flex;width:max-content;animation:ticker 28s linear infinite}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{display:flex;align-items:center;gap:16px;padding:0 28px;white-space:nowrap;flex-shrink:0}
+.t-name{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:5px}
+.t-w{color:var(--white)}.t-b{color:var(--accent2)}
+.t-dot{width:3px;height:3px;border-radius:50%;background:var(--accent2);opacity:.4}
 
-  /* CATEGORIES GRID */
-  .cat-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
-  }
-  .cat-card {
-    position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer;
-    text-decoration: none; display: block;
-  }
-  .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.55); }
-  .cat-card:hover img { transform: scale(1.05); filter: brightness(0.4); }
-  .cat-card-info {
-    position: absolute; bottom: 0; left: 0; right: 0; padding: 24px;
-    background: linear-gradient(transparent, rgba(0,0,0,0.8));
-  }
-  .cat-card-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; }
-  .cat-card-sub { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 2px; color: var(--blue-light); text-transform: uppercase; }
-  .cat-card-btn {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background: var(--blue); color: var(--white); padding: 10px 24px;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .cat-card:hover .cat-card-btn { opacity: 1; }
+/* ─── STATS BAR ─── */
+.stats-bar{
+  background:var(--dark2);border-bottom:1px solid var(--border);
+  padding:20px 32px;display:flex;justify-content:center;gap:56px;flex-wrap:wrap;
+}
+.stat{text-align:center}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--accent2);letter-spacing:2px;line-height:1}
+.stat-l{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--grey);margin-top:3px}
 
-  /* ABOUT */
-  .about-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-  .about-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: 3px; margin-bottom: 20px; }
-  .about-title span { color: var(--blue-light); }
-  .about-text { color: var(--gray); line-height: 1.8; font-size: 0.95rem; margin-bottom: 16px; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
-  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--blue-light); letter-spacing: 2px; }
-  .stat-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
-  .about-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; filter: brightness(0.7); }
+/* ─── SECTION HEADER ─── */
+.sec-hdr{padding:72px 24px 48px;text-align:center}
+.sec-tag{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:5px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,5vw,56px);letter-spacing:3px;margin-bottom:12px}
+.sec-sub{font-size:14px;font-weight:300;color:var(--grey);max-width:420px;margin:0 auto;line-height:1.8}
 
-  /* CTA */
-  .cta-wrap {
-    text-align: center; padding: 80px 40px;
-    border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    max-width: 100%;
-  }
-  .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: 4px; margin-bottom: 12px; }
-  .cta-title span { color: var(--blue-light); }
-  .cta-sub { color: var(--gray); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 2px; margin-bottom: 32px; font-size: 0.95rem; }
-  .cta-btn {
-    display: inline-block; background: #25D366; color: var(--white);
-    text-decoration: none; font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; letter-spacing: 3px; text-transform: uppercase;
-    padding: 16px 48px; transition: background 0.2s;
-  }
-  .cta-btn:hover { background: #1ebe5a; }
+/* ─── CATEGORIES ─── */
+#categorias{background:var(--black)}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%}
+.cat-card{
+  position:relative;height:320px;background:var(--dark3);
+  overflow:hidden;cursor:pointer;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+/* placeholder visual */
+.cat-placeholder{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--dark3) 0%,var(--dark4) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.cat-placeholder-icon{
+  font-size:48px;opacity:.08;
+  font-family:'Bebas Neue',sans-serif;letter-spacing:4px;color:var(--white);
+  text-align:center;padding:16px;
+}
+.cat-img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;position:absolute;inset:0}
+.cat-card:hover .cat-img{transform:scale(1.06)}
+.cat-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:24px;
+  z-index:2;
+}
+.cat-num{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:4px;color:var(--accent2);margin-bottom:5px}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,38px);letter-spacing:2px;line-height:1;margin-bottom:6px}
+.cat-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;margin-bottom:16px}
+.cat-btn-sm{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent);color:#fff;
+  padding:8px 18px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;align-self:flex-start;
+  transition:all .2s;
+}
+.cat-btn-sm:hover{background:var(--accent2);transform:translateX(4px)}
 
-  /* FOOTER */
-  footer {
-    padding: 40px; display: flex; justify-content: space-between; align-items: center;
-    border-top: 1px solid var(--border); max-width: 1400px; margin: 0 auto;
-  }
-  .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 3px; }
-  .footer-logo span { color: var(--blue-light); }
-  .footer-copy { font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; color: #444; letter-spacing: 1px; }
+/* ─── FEATURED PRODUCTS ─── */
+#destaques{background:var(--dark)}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3px;width:100%}
+.prod-card{
+  background:var(--dark2);cursor:pointer;
+  transition:transform .2s;
+  display:flex;flex-direction:column;
+}
+.prod-card:hover{transform:translateY(-3px)}
+.prod-img-wrap{
+  aspect-ratio:4/5;background:var(--dark3);
+  position:relative;overflow:hidden;
+}
+.prod-placeholder{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:8px;
+}
+.prod-placeholder-box{
+  width:60px;height:60px;border:2px solid rgba(255,255,255,.1);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+}
+.prod-placeholder svg{opacity:.15}
+.prod-placeholder-label{font-family:'Barlow Condensed',sans-serif;font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.15);text-transform:uppercase}
+.prod-badge{
+  position:absolute;top:10px;left:10px;
+  background:var(--accent);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 8px;border-radius:2px;
+}
+.prod-info{padding:14px 16px 18px}
+.prod-name{
+  font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;
+  letter-spacing:.5px;margin-bottom:4px;color:var(--white);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.prod-installment{font-size:11px;color:var(--grey);margin-bottom:4px}
+.prod-price{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;
+  color:var(--accent2);letter-spacing:1px;
+}
+.prod-price-pix{font-size:11px;color:#4CAF50;margin-top:2px}
+.prod-buy{
+  margin-top:10px;width:100%;
+  background:var(--accent);color:#fff;border:none;
+  padding:10px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;cursor:pointer;
+  transition:background .2s;
+}
+.prod-buy:hover{background:var(--accent2)}
 
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    section { padding: 60px 20px; }
-    .cat-grid { grid-template-columns: 1fr; gap: 2px; }
-    .about-wrap { grid-template-columns: 1fr; gap: 40px; }
-    .about-img { display: none; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-  }
+/* ─── DIFERENCIAIS ─── */
+#diferenciais{
+  padding:80px 32px;background:var(--dark2);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.dif-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:2px;
+  max-width:900px;margin:0 auto;
+}
+.dif-card{
+  background:var(--dark3);padding:36px 28px;
+  border:1px solid var(--border);
+  transition:border-color .25s;
+}
+.dif-card:hover{border-color:rgba(45,125,210,.3)}
+.dif-icon{
+  width:44px;height:44px;border:1px solid rgba(45,125,210,.3);
+  border-radius:var(--radius);display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;color:var(--accent2);
+}
+.dif-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;margin-bottom:8px}
+.dif-text{font-size:13px;font-weight:300;color:var(--grey);line-height:1.7}
+
+/* ─── CTA STRIP ─── */
+.cta-strip{
+  padding:88px 24px;text-align:center;
+  background:var(--black);position:relative;overflow:hidden;
+}
+.cta-strip::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(45,125,210,.09) 0%,transparent 65%);
+}
+.cta-strip h2{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,6vw,64px);
+  letter-spacing:3px;margin-bottom:14px;position:relative;
+}
+.cta-strip h2 span{color:var(--accent2)}
+.cta-strip p{font-size:14px;font-weight:300;color:var(--grey);margin-bottom:36px;line-height:1.8;position:relative}
+.cta-strip .actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  padding:15px 34px;border-radius:var(--radius);
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;transition:all .25s;
+}
+.btn-wa:hover{background:#1fb958;transform:translateY(-3px)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--dark);border-top:1px solid var(--border);
+  padding:56px 32px 32px;
+}
+.footer-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px;
+  margin-bottom:40px;
+}
+.footer-brand .logo-mark{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;
+}
+.footer-brand .lm{
+  width:28px;height:28px;background:var(--accent);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fff;
+}
+.footer-brand .ln{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px}
+.footer-brand .ln span{color:var(--accent2)}
+.footer-brand p{font-size:13px;font-weight:300;color:var(--grey);line-height:1.8;max-width:240px}
+.footer-col h4{
+  font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:3.5px;text-transform:uppercase;color:var(--accent2);margin-bottom:16px;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col li a{font-size:13px;font-weight:300;color:var(--grey);transition:color .2s}
+.footer-col li a:hover{color:var(--white)}
+.footer-col p{font-size:13px;font-weight:300;color:var(--grey);line-height:1.9}
+.footer-col a{color:var(--accent2)}
+.footer-bot{
+  max-width:1100px;margin:0 auto;
+  padding-top:20px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+}
+.footer-bot p{font-size:11px;color:rgba(100,100,100,.7)}
+
+/* ─── FLOAT WA ─── */
+.fwa{
+  position:fixed;bottom:24px;right:24px;z-index:900;
+  width:54px;height:54px;background:#25D366;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 22px rgba(37,211,102,.4);
+  transition:transform .2s;text-decoration:none;
+}
+.fwa:hover{transform:scale(1.1)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── MOBILE ─── */
+@media(max-width:640px){
+  nav{padding:0 16px}
+  .nav-center{display:none}
+  .stats-bar{gap:24px;padding:18px 16px}
+  .cat-grid{grid-template-columns:1fr 1fr;gap:2px}
+  .cat-card{height:230px}
+  .cat-desc{display:none}
+  .cat-name{font-size:18px}
+  .prod-grid{grid-template-columns:1fr 1fr;gap:2px}
+  .dif-grid{grid-template-columns:1fr 1fr}
+  .dif-card{padding:24px 18px}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  footer{padding:40px 16px 24px}
+  #diferenciais{padding:52px 16px}
+}
+@media(min-width:641px) and (max-width:960px){
+  .nav-center{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .dif-grid{grid-template-columns:1fr 1fr}
+}
+@media(min-width:961px){
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .cat-card{height:400px}
+  .prod-grid{grid-template-columns:repeat(4,1fr)}
+}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">VISION <span>AÇO</span></div>
-  <ul class="nav-links">
-    <li><a href="#catalogo">Catálogo</a></li>
-    <li><a href="#sobre">Sobre</a></li>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo-mark">V</div>
+    <span class="nav-name">VISION <span>AÇO</span></span>
+  </a>
+  <ul class="nav-center">
+    <li><a href="#categorias">Categorias</a></li>
+    <li><a href="#destaques">Destaques</a></li>
+    <li><a href="#diferenciais">Por que nós</a></li>
+    <li><a href="#cta">Contato</a></li>
   </ul>
-  <a class="nav-whatsapp" href="https://wa.me/5534988780922" target="_blank">Falar no WhatsApp</a>
+  <div class="nav-right">
+    <a href="carrinho.html" class="nav-cart">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-badge">0</span>
+    </a>
+    <a href="https://wa.me/5534988780922" target="_blank" class="nav-wa">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-eagle">
-    <img src="imgs/aguia.png" alt="">
-  </div>
-  <div class="hero-content">
-    <div class="hero-ticker">VISION <span class="blue">AÇO</span></div>
-    <p class="hero-sub">Serralheria Premium · Uberlândia · MG</p>
-    <a class="hero-btn" href="#catalogo">Ver Catálogo</a>
-    <p class="hero-hint">Role para explorar nossos produtos</p>
-  </div>
-</div>
-
-<section id="catalogo">
-  <div class="section-title">NOSSO <span>CATÁLOGO</span></div>
-  <div class="section-line"></div>
-  <div class="cat-grid">
-    <a class="cat-card" href="aparadores.html">
-      <img src="imgs/ap1.jpg" alt="Aparadores">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Aparadores</div>
-        <div class="cat-card-sub">13 modelos</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-    <a class="cat-card" href="bases.html">
-      <img src="imgs/ba1.jpg" alt="Bases de Mesa">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Bases de Mesa</div>
-        <div class="cat-card-sub">14 modelos</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-    <a class="cat-card" href="estantes.html">
-      <img src="imgs/es1.jpg" alt="Estantes">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Estantes</div>
-        <div class="cat-card-sub">21 modelos</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-    <a class="cat-card" href="mesas.html">
-      <img src="imgs/me1.jpg" alt="Mesas de Centro">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Mesas de Centro</div>
-        <div class="cat-card-sub">Ver coleção</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-    <a class="cat-card" href="portas.html">
-      <img src="imgs/pt1.jpg" alt="Portas">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Portas</div>
-        <div class="cat-card-sub">Ver coleção</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-    <a class="cat-card" href="prateleiras.html">
-      <img src="imgs/pr1.jpg" alt="Prateleiras">
-      <div class="cat-card-info">
-        <div class="cat-card-title">Prateleiras</div>
-        <div class="cat-card-sub">Ver coleção</div>
-      </div>
-      <div class="cat-card-btn">Ver Modelos</div>
-    </a>
-  </div>
-</section>
-
-<div class="cta-wrap" id="contato">
-  <div class="cta-title">SOLICITE SEU <span>ORÇAMENTO</span></div>
-  <p class="cta-sub">Atendimento personalizado · Fabricação sob medida · Entrega em todo Brasil</p>
-  <a class="cta-btn" href="https://wa.me/5534988780922" target="_blank">💬 Falar no WhatsApp</a>
-</div>
-
-<section id="sobre">
-  <div class="about-wrap">
-    <div>
-      <div class="about-title">SOBRE A <span>VISION AÇO</span></div>
-      <p class="about-text">Somos uma serralheria especializada em móveis e estruturas de aço com design premium. Cada peça é fabricada com precisão e acabamento de alto nível.</p>
-      <p class="about-text">Atendemos clientes em todo o Brasil, com produtos personalizados para cada projeto.</p>
-      <div class="about-stats">
-        <div>
-          <div class="stat-num">6+</div>
-          <div class="stat-label">Categorias de produtos</div>
-        </div>
-        <div>
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Fabricação própria</div>
-        </div>
-      </div>
+<!-- HERO -->
+<section class="hero" id="topo">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Serralheria Premium · Uberlândia MG</p>
+    <h1 class="hero-title">Aço com <em>design</em> que transforma</h1>
+    <p class="hero-sub">Móveis metálicos sob medida com acabamento premium. Cada peça é produzida para valorizar seu espaço e impressionar em cada detalhe.</p>
+    <div class="hero-actions">
+      <a href="#categorias" class="btn-primary">Ver Catálogo →</a>
+      <a href="https://wa.me/5534988780922" target="_blank" class="btn-ghost">Pedir Orçamento</a>
     </div>
-    <img class="about-img" src="imgs/es1.jpg" alt="Vision Aço">
+    <p class="hero-hint">Entregamos para todo o Brasil · Produção própria · 100% sob medida</p>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker-track" id="ticker-track"></div>
   </div>
 </section>
 
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-n" id="s1">—</div><div class="stat-l">Categorias</div></div>
+  <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Sob Medida</div></div>
+  <div class="stat"><div class="stat-n">Premium</div><div class="stat-l">Acabamento</div></div>
+  <div class="stat"><div class="stat-n">Brasil</div><div class="stat-l">Entrega Nacional</div></div>
+</div>
+
+<!-- CATEGORIAS -->
+<section id="categorias">
+  <div class="sec-hdr">
+    <p class="sec-tag">Nosso Catálogo</p>
+    <h2 class="sec-title">Escolha sua categoria</h2>
+    <p class="sec-sub">Clique em uma categoria para ver todos os modelos disponíveis com preços e variações.</p>
+  </div>
+  <div class="cat-grid" id="cat-grid">
+    <!-- preenchido via JS -->
+  </div>
+</section>
+
+<!-- PRODUTOS EM DESTAQUE -->
+<section id="destaques">
+  <div class="sec-hdr">
+    <p class="sec-tag">Mais Vendidos</p>
+    <h2 class="sec-title">Produtos em destaque</h2>
+    <p class="sec-sub">Os modelos mais procurados da Vision Aço. Compre online ou peça um orçamento.</p>
+  </div>
+  <div class="prod-grid" id="prod-grid">
+    <!-- preenchido via JS -->
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="sec-hdr" style="padding-bottom:40px">
+    <p class="sec-tag">Por que Vision Aço</p>
+    <h2 class="sec-title">Nossos diferenciais</h2>
+  </div>
+  <div class="dif-grid">
+    <div class="dif-card">
+      <div class="dif-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3 class="dif-title">Produção Própria</h3>
+      <p class="dif-text">Fabricamos tudo internamente com controle total da qualidade, do corte ao acabamento final.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h3 class="dif-title">Estrutura Reforçada</h3>
+      <p class="dif-text">Aço de alta resistência, soldas industriais e tratamento anticorrosivo para máxima durabilidade.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      <h3 class="dif-title">Acabamento Premium</h3>
+      <p class="dif-text">Pintura eletrostática em forno, lixamento a mão e inspeção de qualidade em cada peça produzida.</p>
+    </div>
+    <div class="dif-card">
+      <div class="dif-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <h3 class="dif-title">Entrega para todo o Brasil</h3>
+      <p class="dif-text">Enviamos com embalagem reforçada para qualquer estado. Rastreamento completo e seguro total.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip" id="cta">
+  <h2>Pronto para <span>transformar</span><br>seu espaço?</h2>
+  <p>Orçamento sem compromisso. Respondemos em minutos pelo WhatsApp.</p>
+  <div class="actions">
+    <a href="https://wa.me/5534988780922" target="_blank" class="btn-wa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
+    <a href="#categorias" class="btn-primary">Ver Catálogo</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">VISION <span>AÇO</span></div>
-  <div class="footer-copy">© 2025 Vision Aço · Uberlândia, MG · Todos os direitos reservados</div>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-mark">
+        <div class="lm">V</div>
+        <span class="ln">VISION <span>AÇO</span></span>
+      </div>
+      <p>Serralheria premium em Uberlândia, MG. Produtos sob medida com aço de qualidade e design exclusivo para transformar seu espaço.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <ul id="footer-cats"><li><a href="#">Em breve...</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institucional</h4>
+      <ul>
+        <li><a href="#">Sobre nós</a></li>
+        <li><a href="#">Como funciona</a></li>
+        <li><a href="#">Política de entrega</a></li>
+        <li><a href="#">Garantia</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <p>📍 Uberlândia — MG<br>📱 <a href="https://wa.me/5534988780922">(34) 98878-0922</a><br><br>Seg a Sáb · 8h às 18h</p>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <p>© 2025 Vision Aço — Todos os direitos reservados</p>
+    <p style="color:rgba(80,80,80,.5);font-size:10px;letter-spacing:1.5px">UBERLÂNDIA · MINAS GERAIS</p>
+  </div>
 </footer>
 
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1619247935960017');fbq('track','PageView');
-</script>
+<!-- FLOAT WA -->
+<a href="https://wa.me/5534988780922" target="_blank" class="fwa" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
+<script>
+// ── TICKER ──
+var track = document.getElementById('ticker-track');
+var items = '';
+for (var i = 0; i < 18; i++) {
+  items += '<div class="ticker-item"><span class="t-name"><span class="t-w">VISION</span> <span class="t-b">AÇO</span></span><span class="t-dot"></span></div>';
+}
+track.innerHTML = items + items;
+
+// ── CATEGORIES (vazio — preencher depois) ──
+var categories = [
+  // Exemplo de estrutura:
+  // {id:'bases', num:'01', name:'Bases de Mesa', desc:'A estrutura que sustenta o seu estilo.', cover:'', link:'categoria.html'}
+];
+
+var catGrid = document.getElementById('cat-grid');
+var footerCats = document.getElementById('footer-cats');
+
+if (categories.length === 0) {
+  // Placeholder visual enquanto não há categorias
+  for (var i = 0; i < 4; i++) {
+    var ph = document.createElement('div');
+    ph.className = 'cat-card';
+    ph.innerHTML =
+      '<div class="cat-placeholder"><div class="cat-placeholder-icon">CATEGORIA</div></div>' +
+      '<div class="cat-overlay">' +
+        '<p class="cat-num">EM BREVE</p>' +
+        '<h3 class="cat-name">Nova categoria</h3>' +
+        '<p class="cat-desc">Produtos a caminho...</p>' +
+        '<span class="cat-btn-sm">Ver modelos →</span>' +
+      '</div>';
+    catGrid.appendChild(ph);
+  }
+  document.getElementById('s1').textContent = '—';
+  footerCats.innerHTML = '<li><a href="#">Em breve...</a></li>';
+} else {
+  document.getElementById('s1').textContent = categories.length + '+';
+  categories.forEach(function(cat) {
+    var card = document.createElement('div');
+    card.className = 'cat-card';
+    card.innerHTML =
+      (cat.cover ? '<img class="cat-img" src="' + cat.cover + '" alt="' + cat.name + '" loading="lazy">' : '<div class="cat-placeholder"><div class="cat-placeholder-icon">' + cat.name.toUpperCase() + '</div></div>') +
+      '<div class="cat-overlay">' +
+        '<p class="cat-num">Categoria ' + cat.num + '</p>' +
+        '<h3 class="cat-name">' + cat.name + '</h3>' +
+        '<p class="cat-desc">' + cat.desc + '</p>' +
+        '<a href="' + cat.link + '" class="cat-btn-sm">Ver modelos →</a>' +
+      '</div>';
+    card.addEventListener('click', function() { window.location.href = cat.link; });
+    catGrid.appendChild(card);
+    var li = document.createElement('li');
+    li.innerHTML = '<a href="' + cat.link + '">' + cat.name + '</a>';
+    footerCats.appendChild(li);
+  });
+}
+
+// ── FEATURED PRODUCTS (vazio — preencher depois) ──
+var featuredProducts = [
+  // Exemplo:
+  // {name:'Base Modelo 01', price:'R$ 890', installment:'12x R$ 74,16', pix:'R$ 801', badge:'Destaque', link:'produto.html'}
+];
+
+var prodGrid = document.getElementById('prod-grid');
+
+var prodCount = featuredProducts.length > 0 ? featuredProducts.length : 4;
+var prodSource = featuredProducts.length > 0 ? featuredProducts : [{},{},{},{}];
+
+prodSource.forEach(function(p, i) {
+  var card = document.createElement('div');
+  card.className = 'prod-card';
+  card.innerHTML =
+    '<div class="prod-img-wrap">' +
+      '<div class="prod-placeholder">' +
+        '<div class="prod-placeholder-box">' +
+          '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>' +
+        '</div>' +
+        '<span class="prod-placeholder-label">Produto ' + (i+1) + '</span>' +
+      '</div>' +
+      (p.badge ? '<span class="prod-badge">' + p.badge + '</span>' : '<span class="prod-badge">Destaque</span>') +
+    '</div>' +
+    '<div class="prod-info">' +
+      '<div class="prod-name">' + (p.name || 'Nome do Produto') + '</div>' +
+      '<div class="prod-installment">' + (p.installment || '12x R$ —,——') + '</div>' +
+      '<div class="prod-price">' + (p.price || 'R$ ———') + '</div>' +
+      '<div class="prod-price-pix">' + (p.pix ? '🔵 Pix: ' + p.pix : '🔵 Pix com desconto') + '</div>' +
+      '<button class="prod-buy" onclick="window.location.href=\'' + (p.link || 'produto.html') + '\'">Comprar agora</button>' +
+    '</div>';
+  prodGrid.appendChild(card);
+});
+</script>
 </body>
 </html>
