@@ -2,220 +2,1626 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Vértice Decor — Catálogo Premium</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISION AÇO — Móveis e Estruturas Metálicas Premium</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --graphite: #111214;
+    --card-bg: #161819;
+    --border: #1e2022;
+    --blue: #1a6bff;
+    --blue-dim: #0d4ecf;
+    --blue-glow: rgba(26,107,255,0.18);
+    --white: #f5f5f5;
+    --white-dim: #9ca3af;
+    --gold: #c9a84c;
+    --gold-dim: rgba(201,168,76,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+  /* ===== TYPOGRAPHY ===== */
+  h1, h2, h3 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; line-height: 1; }
+  .label { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.72rem; color: var(--blue); }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+    height: 72px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+    background: var(--blue);
+    clip-path: polygon(0 0, 85% 0, 100% 15%, 100% 100%, 15% 100%, 0 85%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-mark svg { width: 20px; height: 20px; fill: white; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav-logo-text span:first-child {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: 0.12em; color: var(--white);
+  }
+  .nav-logo-text span:last-child {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.62rem; letter-spacing: 0.25em; color: var(--blue);
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--white-dim);
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    background: var(--blue); color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--blue-dim); }
+  .nav-cta svg { width: 16px; height: 16px; fill: white; flex-shrink: 0; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: .3s; }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 clamp(1.5rem, 6vw, 5rem);
+    padding-bottom: clamp(3rem, 8vh, 6rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 75%, var(--black) 100%),
+      linear-gradient(135deg, #0d1117 0%, #111820 50%, #0a0a0a 100%);
+  }
+
+  /* Industrial grid texture */
+  .hero-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(26,107,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,107,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Accent glow */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 20%; left: 60%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,107,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  /* Hero product mockup */
+  .hero-visual {
+    position: absolute;
+    right: clamp(2rem, 10vw, 8rem);
+    top: 50%; transform: translateY(-50%);
+    width: clamp(280px, 40vw, 560px);
+    opacity: 0.9;
+  }
+
+  .hero-product-img {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 50%, #1a1a1a 100%);
+    border: 1px solid rgba(26,107,255,0.2);
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-product-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(26,107,255,0.03) 0px, rgba(26,107,255,0.03) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(rgba(26,107,255,0.03) 0px, rgba(26,107,255,0.03) 1px, transparent 1px, transparent 40px);
+  }
+
+  .hero-product-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+    color: rgba(255,255,255,0.15); z-index: 1;
+  }
+  .hero-product-placeholder svg { width: 64px; height: 64px; opacity: 0.4; }
+  .hero-product-placeholder span { font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.15em; font-size: 0.75rem; }
+
+  .hero-badge {
+    position: absolute; top: -12px; right: 24px;
+    background: var(--blue);
+    padding: 6px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 2px; background: var(--blue);
+  }
+
+  .hero h1 {
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    color: var(--white);
+    line-height: 0.95;
+    margin-bottom: 0.6rem;
+  }
+  .hero h1 span { color: var(--blue); }
+
+  .hero-sub {
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--white-dim);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 36px;
+    background: var(--blue); color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background .2s, transform .2s;
+  }
+  .btn-primary:hover { background: var(--blue-dim); transform: translateY(-2px); }
+  .btn-primary svg { width: 18px; height: 18px; fill: white; }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px;
+    background: transparent; color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; border: 1px solid rgba(255,255,255,0.2); cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: border-color .2s, color .2s;
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex; gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat span:first-child {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem; color: var(--blue); letter-spacing: 0.05em;
+  }
+  .hero-stat span:last-child {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-dim);
+  }
+
+  /* ===== SECTIONS COMMON ===== */
+  section { padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 6vw, 5rem); }
+
+  .section-header { margin-bottom: clamp(2.5rem, 6vh, 4.5rem); }
+  .section-header h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--white); margin-top: 0.5rem;
+  }
+
+  /* ===== FEATURES STRIP ===== */
+  .features-strip {
+    background: var(--graphite);
+    padding: 2.5rem clamp(1.5rem, 6vw, 5rem);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2rem;
+  }
+  .feature-item {
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .feature-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--blue-glow);
+    border: 1px solid rgba(26,107,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  }
+  .feature-icon svg { width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+  .feature-text strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 2px;
+  }
+  .feature-text p { font-size: 0.78rem; color: var(--white-dim); line-height: 1.4; }
+
+  /* ===== CATEGORIES ===== */
+  #catalogo { background: var(--black); }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.5px;
+  }
+
+  .cat-card {
+    background: var(--card-bg);
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform .3s;
+    border: 1px solid var(--border);
+  }
+  .cat-card:hover { transform: translateY(-4px); border-color: rgba(26,107,255,0.4); }
+
+  .cat-card-img {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #151515 0%, #1e1e1e 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .cat-card-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 20px);
+  }
+
+  .cat-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.12); z-index: 1;
+  }
+  .cat-placeholder svg { width: 48px; height: 48px; }
+  .cat-placeholder span { font-size: 0.65rem; letter-spacing: 0.2em; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+
+  .cat-card-body { padding: 1.4rem 1.5rem 1.5rem; }
+  .cat-card-body h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .cat-card-body p { font-size: 0.8rem; color: var(--white-dim); margin-bottom: 1.1rem; line-height: 1.5; }
+
+  .btn-ver {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--blue); text-decoration: none; border: none; background: none; cursor: pointer;
+    padding: 0;
+    transition: gap .2s;
+  }
+  .btn-ver:hover { gap: 10px; }
+  .btn-ver svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+  .cat-num {
+    position: absolute; top: 12px; left: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem; color: rgba(26,107,255,0.25);
+    line-height: 1; letter-spacing: 0.05em;
+  }
+
+  /* ===== HOW IT WORKS ===== */
+  #como-funciona { background: var(--graphite); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; color: rgba(26,107,255,0.12);
+    line-height: 1; margin-bottom: 1rem;
+  }
+
+  .step-icon {
+    width: 44px; height: 44px;
+    background: var(--blue-glow);
+    border: 1px solid rgba(26,107,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    margin-bottom: 1rem;
+  }
+  .step-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+
+  .step h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .step p { font-size: 0.82rem; color: var(--white-dim); line-height: 1.55; }
+
+  .step-connector {
+    position: absolute; top: 50%; right: -1px;
+    width: 2px; height: 40px; transform: translateY(-50%);
+    background: var(--blue);
+    display: none;
+  }
+
+  .steps-note {
+    margin-top: 2.5rem;
+    padding: 1.5rem 2rem;
+    background: var(--blue-glow);
+    border: 1px solid rgba(26,107,255,0.2);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .steps-note p { font-size: 0.88rem; color: var(--white-dim); line-height: 1.6; }
+  .steps-note strong { color: var(--white); }
+
+  /* ===== TRUST ===== */
+  #confianca { background: var(--black); }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .trust-card {
+    padding: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    transition: border-color .3s, background .3s;
+  }
+  .trust-card:hover { border-color: rgba(26,107,255,0.4); background: rgba(26,107,255,0.04); }
+
+  .trust-card-icon {
+    width: 48px; height: 48px;
+    background: var(--blue-glow);
+    border: 1px solid rgba(26,107,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    margin-bottom: 1.2rem;
+  }
+  .trust-card-icon svg { width: 22px; height: 22px; stroke: var(--blue); fill: none; stroke-width: 1.8; }
+
+  .trust-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .trust-card p { font-size: 0.82rem; color: var(--white-dim); line-height: 1.55; }
+
+  /* ===== GALLERY ===== */
+  #galeria { background: var(--graphite); border-top: 1px solid var(--border); }
+
+  .gallery-intro { max-width: 540px; }
+  .gallery-intro p { font-size: 1rem; color: var(--white-dim); margin-top: 1rem; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(2, 260px);
+    gap: 3px;
+    margin-top: 2.5rem;
+  }
+
+  .gallery-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+    transition: filter .3s;
+  }
+  .gallery-item:hover { filter: brightness(1.1); }
+
+  .gallery-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+  .gallery-item:nth-child(2) { grid-column: span 4; }
+  .gallery-item:nth-child(3) { grid-column: span 3; }
+  .gallery-item:nth-child(4) { grid-column: span 4; }
+  .gallery-item:nth-child(5) { grid-column: span 3; }
+
+  .gallery-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.1);
+  }
+  .gallery-placeholder svg { width: 36px; height: 36px; }
+  .gallery-placeholder span {
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase;
+    text-align: center;
+  }
+
+  .gallery-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 8px 12px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-dim);
+  }
+
+  /* ===== CTA BANNER ===== */
+  .cta-banner {
+    padding: clamp(3rem, 8vh, 6rem) clamp(1.5rem, 6vw, 5rem);
+    background: linear-gradient(135deg, #0a1628 0%, #061020 100%);
+    border-top: 1px solid rgba(26,107,255,0.2);
+    border-bottom: 1px solid rgba(26,107,255,0.2);
+    position: relative; overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(circle at 0% 50%, rgba(26,107,255,0.1) 0%, transparent 60%),
+      radial-gradient(circle at 100% 50%, rgba(26,107,255,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 2rem; position: relative; z-index: 1;
+  }
+
+  .cta-text h2 {
+    font-size: clamp(2rem, 5vw, 3.5rem); color: var(--white); margin-bottom: 0.6rem;
+  }
+  .cta-text p { font-size: 1rem; color: var(--white-dim); max-width: 480px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--graphite);
+    padding: clamp(3rem, 6vh, 5rem) clamp(1.5rem, 6vw, 5rem) 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr repeat(3, 1fr);
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand .nav-logo { margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.82rem; color: var(--white-dim); line-height: 1.7; max-width: 240px; }
+
+  .footer-social {
+    display: flex; gap: 10px; margin-top: 1.5rem;
+  }
+  .social-btn {
+    width: 36px; height: 36px;
+    background: var(--border);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+    text-decoration: none;
+    transition: background .2s, border-color .2s;
+  }
+  .social-btn:hover { background: var(--blue); border-color: var(--blue); }
+  .social-btn svg { width: 16px; height: 16px; stroke: var(--white-dim); fill: none; stroke-width: 2; }
+  .social-btn:hover svg { stroke: white; }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .footer-col li a {
+    font-size: 0.82rem; color: var(--white-dim); text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-col li a:hover { color: var(--blue); }
+
+  .footer-contact-item {
+    display: flex; gap: 8px; margin-bottom: 0.8rem; align-items: flex-start;
+  }
+  .footer-contact-item svg { width: 14px; height: 14px; stroke: var(--blue); fill: none; stroke-width: 2; flex-shrink: 0; margin-top: 2px; }
+  .footer-contact-item span { font-size: 0.8rem; color: var(--white-dim); line-height: 1.4; }
+
+  .footer-bottom {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  /* ===== MODALS / PRODUCT DRAWER ===== */
+  .overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(6px);
+  }
+  .overlay.active { display: block; }
+
+  .drawer {
+    position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
+    width: min(720px, 100vw);
+    background: var(--graphite);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+  }
+  .drawer.active { transform: translateX(0); }
+
+  .drawer-close {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2rem;
+    background: var(--graphite);
+    border-bottom: 1px solid var(--border);
+  }
+  .drawer-close-btn {
+    width: 36px; height: 36px;
+    background: var(--border); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+    transition: background .2s;
+  }
+  .drawer-close-btn:hover { background: rgba(255,255,255,0.1); }
+  .drawer-close-btn svg { width: 16px; height: 16px; stroke: var(--white); fill: none; stroke-width: 2.5; }
+
+  .drawer-breadcrumb {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-dim);
+  }
+  .drawer-breadcrumb span { color: var(--blue); }
+
+  .drawer-body { padding: 0 2rem 3rem; }
+
+  /* Category view */
+  .drawer-cat-header { padding: 2rem 0 1.5rem; }
+  .drawer-cat-header h2 {
+    font-size: clamp(2rem, 5vw, 3rem); color: var(--white);
+  }
+  .drawer-cat-header p { font-size: 0.88rem; color: var(--white-dim); margin-top: 0.5rem; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .prod-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color .2s, transform .2s;
+    overflow: hidden;
+  }
+  .prod-card:hover { border-color: rgba(26,107,255,0.4); transform: translateY(-3px); }
+
+  .prod-card-img {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #151515 0%, #1e1e1e 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .prod-card-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0, rgba(255,255,255,0.01) 1px, transparent 1px, transparent 16px);
+  }
+
+  .prod-placeholder { display: flex; flex-direction: column; align-items: center; gap: 6px; color: rgba(255,255,255,0.1); z-index: 1; }
+  .prod-placeholder svg { width: 36px; height: 36px; }
+  .prod-placeholder span { font-size: 0.6rem; letter-spacing: 0.15em; font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; }
+
+  .prod-card-info { padding: 1rem; }
+  .prod-card-info h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--white); margin-bottom: 0.3rem;
+  }
+  .prod-card-info p { font-size: 0.75rem; color: var(--white-dim); margin-bottom: 0.8rem; line-height: 1.4; }
+  .prod-card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .btn-sm {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 7px 14px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+    transition: .2s;
+  }
+  .btn-sm-blue { background: var(--blue); color: white; }
+  .btn-sm-blue:hover { background: var(--blue-dim); }
+  .btn-sm-ghost { background: transparent; color: var(--white-dim); border: 1px solid var(--border); }
+  .btn-sm-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.3); }
+  .btn-sm svg { width: 12px; height: 12px; fill: currentColor; }
+
+  /* Product detail */
+  .prod-detail-img {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #151515 0%, #202020 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    margin: 1.5rem 0 1rem;
+    border: 1px solid var(--border);
+  }
+  .prod-detail-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(90deg, rgba(26,107,255,0.02) 0, rgba(26,107,255,0.02) 1px, transparent 1px, transparent 50px),
+      repeating-linear-gradient(rgba(26,107,255,0.02) 0, rgba(26,107,255,0.02) 1px, transparent 1px, transparent 50px);
+  }
+
+  .prod-detail-thumb-row {
+    display: flex; gap: 8px; margin-bottom: 2rem;
+  }
+  .thumb {
+    width: 72px; height: 60px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; flex-shrink: 0;
+    transition: border-color .2s;
+  }
+  .thumb:hover, .thumb.active { border-color: var(--blue); }
+  .thumb svg { width: 20px; height: 20px; stroke: rgba(255,255,255,0.15); fill: none; stroke-width: 1.5; }
+
+  .prod-detail-name {
+    font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--white); margin-bottom: 0.5rem;
+  }
+  .prod-detail-tagline { font-size: 0.9rem; color: var(--white-dim); margin-bottom: 1.5rem; }
+
+  .prod-detail-section { margin-bottom: 1.5rem; }
+  .prod-detail-section label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 0.6rem;
+  }
+
+  .size-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .size-opt {
+    padding: 8px 16px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem; letter-spacing: 0.1em; color: var(--white-dim);
+    cursor: pointer; transition: .2s;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+  }
+  .size-opt:hover, .size-opt.active { border-color: var(--blue); color: var(--white); background: var(--blue-glow); }
+
+  .color-opts { display: flex; gap: 10px; }
+  .color-opt {
+    display: flex; flex-direction: column; align-items: center; gap: 5px;
+    cursor: pointer;
+  }
+  .color-swatch {
+    width: 36px; height: 36px;
+    border: 2px solid transparent;
+    transition: .2s;
+    clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px));
+  }
+  .color-opt:hover .color-swatch, .color-opt.active .color-swatch { border-color: var(--blue); }
+  .color-opt span { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--white-dim); font-family: 'Barlow Condensed', sans-serif; }
+
+  .obs-input {
+    width: 100%; padding: 10px 14px;
+    background: var(--card-bg); border: 1px solid var(--border);
+    color: var(--white); font-family: 'Barlow', sans-serif; font-size: 0.85rem;
+    resize: vertical; min-height: 80px; outline: none;
+    transition: border-color .2s;
+  }
+  .obs-input:focus { border-color: var(--blue); }
+  .obs-input::placeholder { color: rgba(255,255,255,0.2); }
+
+  .prod-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+  .prod-info-item {
+    padding: 12px 14px;
+    background: var(--card-bg); border: 1px solid var(--border);
+  }
+  .prod-info-item span:first-child {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--white-dim); margin-bottom: 3px;
+  }
+  .prod-info-item span:last-child { font-size: 0.82rem; color: var(--white); }
+
+  .btn-wpp {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 18px;
+    background: #25d366; color: white;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    border: none; cursor: pointer; text-decoration: none;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: background .2s, transform .2s;
+  }
+  .btn-wpp:hover { background: #1da851; transform: translateY(-2px); }
+  .btn-wpp svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+
+  /* ===== MOBILE NAV ===== */
+  .mobile-menu {
+    display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; z-index: 99;
+    background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .mobile-menu.active { display: flex; }
+  .mobile-menu a {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem; letter-spacing: 0.1em; color: var(--white);
+    text-decoration: none; transition: color .2s;
+  }
+  .mobile-menu a:hover { color: var(--blue); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-visual { display: none; }
+    .hero h1 { font-size: clamp(3rem, 12vw, 5rem); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+    }
+    .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .step { border-bottom: 1px solid var(--border); }
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cta-inner { flex-direction: column; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .prod-detail-thumb-row { flex-wrap: wrap; }
+    .prod-info-grid { grid-template-columns: 1fr; }
+    nav { padding: 0 1.2rem; }
+    .nav-cta span { display: none; }
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    opacity: 0; animation: fadeUp .8s ease forwards;
+  }
+  .hero-eyebrow { animation-delay: .1s; }
+  .hero h1 { animation-delay: .25s; }
+  .hero-sub { animation-delay: .4s; }
+  .hero-btns { animation-delay: .55s; }
+  .hero-stats { animation-delay: .7s; }
+
+  /* Blue accent line decoration */
+  .accent-line {
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .accent-line::after {
+    content: ''; display: block; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--blue), transparent);
+    min-width: 60px;
+  }
+</style>
 </head>
 <body>
 
-<!-- ─── HEADER ─────────────────────────────── -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="logo">
-      <span class="logo-name">Vértice Decor</span>
-      <span class="logo-tag">Corte a Laser · Premium</span>
+<!-- ===== NAV ===== -->
+<nav id="nav">
+  <a href="#" class="nav-logo" onclick="showHome()">
+    <div class="nav-logo-mark">
+      <svg viewBox="0 0 20 20"><polygon points="10,1 19,6 19,14 10,19 1,14 1,6"/></svg>
     </div>
-    <a href="https://wa.me/5500000000000" class="header-wpp" target="_blank">
-      <svg class="wpp-icon" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      WhatsApp
-    </a>
-  </div>
-</header>
+    <div class="nav-logo-text">
+      <span>VISION AÇO</span>
+      <span>Design Metálico Premium</span>
+    </div>
+  </a>
 
-<!-- ─── HERO ─────────────────────────────── -->
-<section class="hero">
-  <div class="hero-badge">Catálogo Oficial 2025</div>
-  <h1 class="hero-title">Arte em<br><em>Corte a Laser</em></h1>
-  <p class="hero-sub">Decoração exclusiva com acabamento premium</p>
-  <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">140+</span>
-      <span class="stat-label">Modelos</span>
+  <ul class="nav-links">
+    <li><a href="#catalogo" onclick="closeDrawer()">Catálogo</a></li>
+    <li><a href="#como-funciona" onclick="closeDrawer()">Como Funciona</a></li>
+    <li><a href="#confianca" onclick="closeDrawer()">Sobre</a></li>
+    <li><a href="#galeria" onclick="closeDrawer()">Galeria</a></li>
+  </ul>
+
+  <a href="https://wa.me/5534999999999?text=Olá%2C%20gostaria%20de%20mais%20informações%20sobre%20os%20produtos%20Vision%20Aço." target="_blank" class="nav-cta">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span>Orçamento</span>
+  </a>
+
+  <div class="hamburger" id="hamburger" onclick="toggleMobile()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#catalogo" onclick="toggleMobile()">Catálogo</a>
+  <a href="#como-funciona" onclick="toggleMobile()">Como Funciona</a>
+  <a href="#confianca" onclick="toggleMobile()">Sobre Nós</a>
+  <a href="#galeria" onclick="toggleMobile()">Galeria</a>
+  <a href="https://wa.me/5534999999999?text=Olá%2C%20gostaria%20de%20orçamento%20Vision%20Aço." target="_blank" onclick="toggleMobile()" style="color: #25d366;">WhatsApp</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-visual">
+    <div class="hero-product-img">
+      <div class="hero-product-placeholder">
+        <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="10" y="30" width="60" height="8"/>
+          <rect x="18" y="38" width="4" height="28"/>
+          <rect x="58" y="38" width="4" height="28"/>
+          <rect x="24" y="42" width="32" height="3"/>
+          <rect x="24" y="52" width="32" height="3"/>
+        </svg>
+        <span>Foto do Produto</span>
+      </div>
+      <div class="hero-badge">Sob Medida</div>
     </div>
-    <div class="stat">
-      <span class="stat-num">6</span>
-      <span class="stat-label">Categorias</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="label">Vision Aço — Uberlândia, MG</span>
     </div>
-    <div class="stat">
-      <span class="stat-num">3</span>
-      <span class="stat-label">Cores</span>
+    <h1>MÓVEIS<br><span>METÁLICOS</span><br>SOB MEDIDA</h1>
+    <p class="hero-sub">Design industrial premium, fabricação própria e envio para todo o Brasil.</p>
+    <div class="hero-btns">
+      <a href="#catalogo" class="btn-primary">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+        Ver catálogo
+      </a>
+      <a href="https://wa.me/5534999999999?text=Olá%2C%20gostaria%20de%20solicitar%20um%20orçamento%20para%20produtos%20Vision%20Aço." target="_blank" class="btn-ghost">
+        Solicitar orçamento
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span>10+</span><span>Categorias</span>
+      </div>
+      <div class="hero-stat">
+        <span>3</span><span>Acabamentos</span>
+      </div>
+      <div class="hero-stat">
+        <span>BR</span><span>Envio Nacional</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ─── HOME VIEW ─────────────────────────── -->
-<div id="home-view">
-
-  <div class="section-title">
-    <h2>Categorias</h2>
-    <p>Selecione para explorar os modelos</p>
-    <span class="gold-line"></span>
+<!-- ===== FEATURES STRIP ===== -->
+<div class="features-strip">
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Fabricação Sob Medida</strong>
+        <p>Cada peça produzida conforme sua necessidade</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Acabamento Premium</strong>
+        <p>Microtexturizado, branco ou dourado</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Envio p/ Todo Brasil</strong>
+        <p>Produtos desmontáveis para transporte seguro</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Fácil Montagem</strong>
+        <p>Sistema de parafusos simples e prático</p>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.1 2.18 2 2 0 012.09 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.06 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <div class="feature-text">
+        <strong>Atendimento Direto</strong>
+        <p>Fale conosco pelo WhatsApp</p>
+      </div>
+    </div>
   </div>
-
-  <div class="categories">
-
-    <!-- 01 · Numéricas -->
-    <div class="cat-card" onclick="openCategory('numericas')">
-      <div class="cat-bg">🔢</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">01</div>
-        <div class="cat-name">Numéricas<br>Decorativas</div>
-        <div class="cat-count">40 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Pets</span>
-          <span class="cat-opt-tag">Floral</span>
-          <span class="cat-opt-tag">Safari</span>
-          <span class="cat-opt-tag">Minimalista</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-    <!-- 02 · Animal -->
-    <div class="cat-card" onclick="openCategory('animal')">
-      <div class="cat-bg">🐾</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">02</div>
-        <div class="cat-name">Decoração<br>Animal</div>
-        <div class="cat-count">18 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Cavalos</span>
-          <span class="cat-opt-tag">Aves</span>
-          <span class="cat-opt-tag">Safari</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-    <!-- 03 · Mandalas -->
-    <div class="cat-card" onclick="openCategory('mandala')">
-      <div class="cat-bg">✿</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">03</div>
-        <div class="cat-name">Mandalas<br>Decorativas</div>
-        <div class="cat-count">8 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Floral</span>
-          <span class="cat-opt-tag">Buda</span>
-          <span class="cat-opt-tag">Yoga</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-    <!-- 04 · Automotiva -->
-    <div class="cat-card" onclick="openCategory('auto')">
-      <div class="cat-bg">🏎</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">04</div>
-        <div class="cat-name">Decoração<br>Automotiva</div>
-        <div class="cat-count">17 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Esportivos</span>
-          <span class="cat-opt-tag">Clássicos</span>
-          <span class="cat-opt-tag">Fórmula 1</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-    <!-- 05 · Placas -->
-    <div class="cat-card" onclick="openCategory('placas')">
-      <div class="cat-bg">🪧</div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">05</div>
-        <div class="cat-name">Placas<br>Decorativas</div>
-        <div class="cat-count">12 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Frases</span>
-          <span class="cat-opt-tag">Nomes</span>
-          <span class="cat-opt-tag">Modernas</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-    <!-- 06 · Fazenda (com imagem real de fundo) -->
-    <div class="cat-card" onclick="openCategory('fazenda')">
-      <div class="cat-bg-img" style="background-image:url('images/IMG_5016.jpeg')"></div>
-      <div class="cat-overlay"></div>
-      <div class="cat-content">
-        <div class="cat-number">06</div>
-        <div class="cat-name">Fazenda &<br>Chácara</div>
-        <div class="cat-count">20 modelos</div>
-        <div class="cat-options">
-          <span class="cat-opt-tag">Tratores</span>
-          <span class="cat-opt-tag">Cavalos</span>
-          <span class="cat-opt-tag">Gado</span>
-          <span class="cat-opt-tag">Rural</span>
-        </div>
-      </div>
-      <div class="cat-arrow">→</div>
-    </div>
-
-  </div><!-- /.categories -->
-
-  <!-- WPP Banner -->
-  <div class="wpp-banner">
-    <div class="wpp-banner-icon">💬</div>
-    <div class="wpp-banner-text">
-      <h3>Atendimento Exclusivo</h3>
-      <p>Tire dúvidas e faça seu pedido</p>
-    </div>
-    <a href="https://wa.me/5500000000000" class="wpp-banner-btn" target="_blank">Chamar</a>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="footer-logo">Vértice Decor</div>
-    <div class="footer-tag">Arte em Corte a Laser</div>
-    <div class="footer-sep"></div>
-    <div class="footer-text">
-      Peças <span class="footer-gold">exclusivas e personalizadas</span><br>
-      produzidas com precisão e cuidado.<br><br>
-      Cada peça é única. Cada detalhe importa.
-    </div>
-  </footer>
-
-</div><!-- /#home-view -->
-
-<!-- ─── CATEGORY PANEL ─────────────────────── -->
-<div class="panel" id="cat-panel">
-  <div class="panel-header">
-    <button class="back-btn" onclick="closeCategory()">←</button>
-    <span class="panel-header-title" id="cat-panel-title">Categoria</span>
-    <span class="panel-header-count" id="cat-panel-count"></span>
-  </div>
-  <div class="subcat-scroll" id="subcat-tabs"></div>
-  <div class="products-grid" id="products-grid"></div>
 </div>
 
-<!-- ─── PRODUCT DETAIL PANEL ─────────────── -->
-<div class="detail-panel" id="detail-panel">
-  <div class="panel-header">
-    <button class="back-btn" onclick="closeDetail()">←</button>
-    <span class="panel-header-title" id="detail-panel-title">Produto</span>
-    <span class="panel-header-count">Vértice Decor</span>
+<!-- ===== CATEGORIES ===== -->
+<section id="catalogo">
+  <div class="section-header">
+    <div class="accent-line label">Catálogo Completo</div>
+    <h2>NOSSAS<br>CATEGORIAS</h2>
   </div>
-  <div class="detail-img-wrap" id="detail-img"></div>
-  <div class="detail-body" id="detail-body"></div>
+  <div class="cat-grid" id="catGrid"></div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="como-funciona">
+  <div class="section-header">
+    <div class="accent-line label">Processo</div>
+    <h2>COMO<br>FUNCIONA</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+      <h3>Escolha o Modelo</h3>
+      <p>Navegue pelo catálogo e escolha o modelo que mais combina com seu ambiente.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div>
+      <h3>Selecione Medida e Cor</h3>
+      <p>Escolha as dimensões e o acabamento que deseja para sua peça.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.1 2.18 2 2 0 012.09 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.06 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <h3>Solicite Orçamento</h3>
+      <p>Entre em contato pelo WhatsApp com as especificações do produto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+      <h3>Produzimos Sob Medida</h3>
+      <p>Nossa equipe fabrica sua peça com metalon e acabamento de alta qualidade.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <h3>Enviamos Desmontado</h3>
+      <p>O produto vai protegido e desmontado, com furação pronta para montagem fácil.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">06</div>
+      <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg></div>
+      <h3>Você Monta em Casa</h3>
+      <p>Com os parafusos inclusos e instruções claras, a montagem é rápida e simples.</p>
+    </div>
+  </div>
+  <div class="steps-note">
+    <p><strong>Sobre o envio:</strong> Nossos produtos são enviados desmontados, com furação pronta e sistema de montagem simples, para o cliente montar em casa com praticidade. Sem necessidade de ferramentas especiais.</p>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section id="confianca">
+  <div class="section-header">
+    <div class="accent-line label">Por que Vision Aço</div>
+    <h2>QUALIDADE<br>QUE SE VÊ</h2>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+      <h3>Fabricação Própria</h3>
+      <p>Produção completa em nossa oficina, com controle total da qualidade desde o corte até o acabamento final.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Acabamento Premium</h3>
+      <p>Pintura microtexturizada de alta qualidade que resiste ao tempo, aos riscos e ao uso diário.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      <h3>Peças Sob Medida</h3>
+      <p>Cada produto fabricado sob medida para se adequar perfeitamente ao seu espaço e necessidade.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+      <h3>Envio Nacional</h3>
+      <p>Enviamos para todo o Brasil com segurança. Produtos desmontados para garantir a integridade no transporte.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.1 2.18 2 2 0 012.09 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.06 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <h3>Atendimento Direto</h3>
+      <p>Fale diretamente com quem fabrica. Tire dúvidas, personalize e acompanhe seu pedido pelo WhatsApp.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+      <h3>Metalon de Qualidade</h3>
+      <p>Utilizamos metalon de alta resistência, garantindo estruturas sólidas, duráveis e seguras.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="galeria">
+  <div class="section-header gallery-intro">
+    <div class="accent-line label">Galeria</div>
+    <h2>NOSSOS<br>TRABALHOS</h2>
+    <p>Fotos reais da produção e dos produtos finalizados. Substitua pelas suas fotos.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Foto Principal<br>do Produto</span>
+      </div>
+      <div class="gallery-label">Produto Montado</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Detalhe do<br>Acabamento</span>
+      </div>
+      <div class="gallery-label">Detalhe Premium</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Foto<br>da Oficina</span>
+      </div>
+      <div class="gallery-label">Nossa Oficina</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Produto<br>Desmontado</span>
+      </div>
+      <div class="gallery-label">Embalagem</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>Catálogo<br>Premium</span>
+      </div>
+      <div class="gallery-label">Ambiente Real</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<div class="cta-banner">
+  <div class="cta-inner">
+    <div class="cta-text">
+      <div class="label" style="margin-bottom: 0.6rem;">Pronto para começar?</div>
+      <h2>SOLICITE SEU<br>ORÇAMENTO</h2>
+      <p>Escolha o modelo, personalize a medida e fale direto conosco. Atendimento ágil pelo WhatsApp.</p>
+    </div>
+    <a href="https://wa.me/5534999999999?text=Olá%2C%20gostaria%20de%20solicitar%20um%20orçamento%20Vision%20Aço." target="_blank" class="btn-primary" style="padding: 20px 44px; font-size: 1rem;">
+      <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </div>
 </div>
 
-<!-- ─── SCROLL TOP ─────────────────────────── -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo" onclick="showHome(); return false;" style="display: inline-flex; margin-bottom: 1rem;">
+        <div class="nav-logo-mark">
+          <svg viewBox="0 0 20 20"><polygon points="10,1 19,6 19,14 10,19 1,14 1,6"/></svg>
+        </div>
+        <div class="nav-logo-text">
+          <span>VISION AÇO</span>
+          <span>Design Metálico Premium</span>
+        </div>
+      </a>
+      <p>Móveis e estruturas metálicas sob medida. Fabricação própria, acabamento premium e envio para todo o Brasil.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/5534999999999" target="_blank" class="social-btn" title="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://instagram.com/visionaco" target="_blank" class="social-btn" title="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
 
-<script src="script.js"></script>
+    <div class="footer-col">
+      <h4>Categorias</h4>
+      <ul>
+        <li><a href="#" onclick="openCategory(0)">Bases de Mesa</a></li>
+        <li><a href="#" onclick="openCategory(1)">Mesas de Centro</a></li>
+        <li><a href="#" onclick="openCategory(2)">Mesas Laterais</a></li>
+        <li><a href="#" onclick="openCategory(3)">Aparadores</a></li>
+        <li><a href="#" onclick="openCategory(4)">Estantes</a></li>
+        <li><a href="#" onclick="openCategory(5)">Prateleiras</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Mais Produtos</h4>
+      <ul>
+        <li><a href="#" onclick="openCategory(6)">Bancos e Banquetas</a></li>
+        <li><a href="#" onclick="openCategory(7)">Suportes p/ Plantas</a></li>
+        <li><a href="#" onclick="openCategory(8)">Móveis Comerciais</a></li>
+        <li><a href="#" onclick="openCategory(9)">Estruturas Metálicas</a></li>
+        <li><a href="#como-funciona">Como Funciona</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contato</h4>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.63 19.79 19.79 0 01.1 2.18 2 2 0 012.09 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.06 7.9a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span>(34) 9 9999-9999<br>Atendimento via WhatsApp</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Uberlândia — MG<br>Atendimento para todo o Brasil</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg>
+        <span>@visionaco<br>Instagram</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Vision Aço. Todos os direitos reservados.</p>
+    <p>Fabricação própria · Uberlândia, MG · Envio nacional</p>
+  </div>
+</footer>
+
+<!-- ===== DRAWER ===== -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div id="drawerContent"></div>
+</div>
+
+<script>
+// ===== DATA =====
+const WPP = '5534999999999';
+
+const categories = [
+  {
+    id: 'bases-mesa',
+    name: 'Bases de Mesa',
+    desc: 'Bases metálicas para mesas de jantar, escritório e reunião. Design industrial, resistência incomparável.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="8" y="20" width="32" height="4"/><rect x="12" y="24" width="3" height="18"/><rect x="33" y="24" width="3" height="18"/><rect x="15" y="28" width="18" height="2"/></svg>`,
+    catImg: 'imgs/bases/base-10.png',
+    sizes: ['1,20 × 0,60 m', '1,50 × 0,80 m', '1,80 × 0,90 m', '2,00 × 1,00 m', 'Sob medida'],
+    products: [
+      { name: 'Base Triângulo Duplo', desc: 'Estrutura triangular dupla em cada lateral. Design geométrico sofisticado e alta estabilidade.', img: 'imgs/bases/base-01.png' },
+      { name: 'Base Estrela Central', desc: 'Base central em estrela para tampos redondos. Design escultural e marcante.', img: 'imgs/bases/base-02.png' },
+      { name: 'Base X Diamante', desc: 'Pés em X com detalhe de diamante. Equilíbrio entre robustez e elegância.', img: 'imgs/bases/base-03.png' },
+      { name: 'Base X Cruzada', desc: 'Pés em X cruzado com travessa central. Visual industrial intenso e estrutura sólida.', img: 'imgs/bases/base-04.png' },
+      { name: 'Base X Clean', desc: 'Pés em X com perfil limpo e travessa reta. Clássico do design industrial moderno.', img: 'imgs/bases/base-05.png' },
+      { name: 'Base Z Assimétrico', desc: 'Estrutura em Z de perfil assimétrico. Design arrojado e contemporâneo.', img: 'imgs/bases/base-06.png' },
+      { name: 'Base Trapézio Slim', desc: 'Pés trapezoidais de perfil fino. Leveza visual com máxima resistência.', img: 'imgs/bases/base-07.png' },
+      { name: 'Base Quadrado Reto', desc: 'Quatro pernas retas em quadrado perfeito. Simplicidade que não passa despercebida.', img: 'imgs/bases/base-08.png' },
+      { name: 'Base X Duplo', desc: 'X duplo em cada lateral com travessa baixa. Estrutura imponente e de alto impacto visual.', img: 'imgs/bases/base-09.png' },
+      { name: 'Base X Fechado', desc: 'X fechado em moldura retangular. Rigidez máxima e acabamento premium.', img: 'imgs/bases/base-10.png' },
+      { name: 'Base X Frame', desc: 'X com moldura quadrada embutida. Visual moderno e construção robusta.', img: 'imgs/bases/base-11.png' },
+      { name: 'Base Trama', desc: 'Lateral com trama de barras cruzadas. Design exclusivo e artístico.', img: 'imgs/bases/base-12.png' },
+      { name: 'Base X Slim', desc: 'Pés em X de perfil fino com travessa. Elegância e solidez em perfeito equilíbrio.', img: 'imgs/bases/base-13.png' },
+      { name: 'Base Asa Dupla', desc: 'Pernas em asa dupla com travessa baixa. Inovação no design de bases para mesa.', img: 'imgs/bases/base-14.png' },
+    ]
+  },
+  {
+    id: 'mesas-centro',
+    name: 'Mesas de Centro',
+    desc: 'Mesas de centro com estrutura metálica robusta. Tampo em vidro, madeira ou concreto.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="6" y="20" width="36" height="4"/><rect x="10" y="24" width="2" height="14"/><rect x="36" y="24" width="2" height="14"/><rect x="12" y="32" width="24" height="2"/></svg>`,
+    sizes: ['0,80 × 0,50 m', '1,00 × 0,60 m', '1,20 × 0,70 m', '1,40 × 0,80 m', 'Sob medida'],
+    products: [
+      { name: 'Centro Slim', desc: 'Perfil fino e elegante. Ideal para salas modernas e minimalistas.' },
+      { name: 'Centro Industrial', desc: 'Estrutura robusta com travessas visíveis. Estilo loft e industrial.' },
+      { name: 'Centro Float', desc: 'Base única central com acabamento premium. Efeito flutuante.' },
+      { name: 'Centro Duo', desc: 'Duas prateleiras integradas. Funcional e com muito estilo.' },
+    ]
+  },
+  {
+    id: 'mesas-laterais',
+    name: 'Mesas Laterais',
+    desc: 'Mesas laterais e de apoio para sofás e camas. Compactas, funcionais e elegantes.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="12" y="16" width="24" height="3"/><rect x="16" y="19" width="2" height="22"/><rect x="30" y="19" width="2" height="22"/><rect x="18" y="28" width="12" height="2"/></svg>`,
+    sizes: ['0,40 × 0,40 m', '0,50 × 0,50 m', '0,60 × 0,40 m', 'Sob medida'],
+    products: [
+      { name: 'Lateral Cube', desc: 'Forma cúbica perfeita. Versátil como mesa de apoio ou banco.' },
+      { name: 'Lateral Pin', desc: 'Três pés em formato cone. Design escultural e único.' },
+      { name: 'Lateral Stack', desc: 'Dois níveis empilhados. Dobro de espaço, metade do volume.' },
+    ]
+  },
+  {
+    id: 'aparadores',
+    name: 'Aparadores',
+    desc: 'Aparadores e consoles metálicos para salas e corredores. Elegância funcional.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="4" y="20" width="40" height="4"/><rect x="6" y="24" width="2" height="18"/><rect x="40" y="24" width="2" height="18"/><rect x="8" y="32" width="32" height="2"/></svg>`,
+    sizes: ['1,00 × 0,35 m', '1,20 × 0,35 m', '1,50 × 0,40 m', '1,80 × 0,40 m', 'Sob medida'],
+    products: [
+      { name: 'Console Slim', desc: 'Perfil ultrafino para corredores. Presença sem ocupar espaço.' },
+      { name: 'Aparador Industrial', desc: 'Estrutura robusta com prateleira baixa integrada.' },
+      { name: 'Console Flutuante', desc: 'Fixação na parede, sem pés. Elegância e leveza visuais.' },
+      { name: 'Aparador Duplo', desc: 'Dois tampos em alturas diferentes. Funcionalidade máxima.' },
+    ]
+  },
+  {
+    id: 'estantes',
+    name: 'Estantes',
+    desc: 'Estantes e racks metálicos para livros, decoração e objetos. Do piso ao teto se necessário.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="8" y="6" width="2" height="36"/><rect x="38" y="6" width="2" height="36"/><rect x="8" y="14" width="32" height="2"/><rect x="8" y="24" width="32" height="2"/><rect x="8" y="34" width="32" height="2"/></svg>`,
+    sizes: ['1,20 m', '1,50 m', '1,80 m', '2,00 m', '2,20 m', 'Sob medida'],
+    products: [
+      { name: 'Estante Rack 3', desc: 'Três prateleiras em estrutura sólida. Clássico industrial moderno.' },
+      { name: 'Estante Rack 5', desc: 'Cinco níveis para grandes coleções. Robustez e estilo.' },
+      { name: 'Estante Modular', desc: 'Sistema modular expansível. Cresça conforme a necessidade.' },
+      { name: 'Estante Painel', desc: 'Fundo em chapa perfurada. Visual único e industrial.' },
+    ]
+  },
+  {
+    id: 'prateleiras',
+    name: 'Prateleiras',
+    desc: 'Prateleiras metálicas suspensas para paredes. Organização com design e resistência.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="6" y="14" width="36" height="3"/><path d="M10 17 L6 26"/><path d="M38 17 L42 26"/><rect x="6" y="28" width="36" height="3"/><path d="M10 31 L6 40"/><path d="M38 31 L42 40"/></svg>`,
+    sizes: ['0,60 m', '0,80 m', '1,00 m', '1,20 m', '1,50 m', 'Sob medida'],
+    products: [
+      { name: 'Prateleira Simples', desc: 'Perfil clean com suporte oculto. Design minimalista e funcional.' },
+      { name: 'Prateleira Canaleta', desc: 'Acabamento em canaleta frontal. Detalhe industrial sofisticado.' },
+      { name: 'Kit 3 Prateleiras', desc: 'Conjunto de três alturas diferentes. Composição harmônica.' },
+      { name: 'Prateleira Corner', desc: 'Para cantos e esquinas. Aproveitamento inteligente do espaço.' },
+    ]
+  },
+  {
+    id: 'bancos',
+    name: 'Bancos e Banquetas',
+    desc: 'Bancos e banquetas com estrutura metálica. Do rústico ao mais elegante, sob medida.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="6" y="18" width="36" height="4"/><rect x="8" y="22" width="3" height="18"/><rect x="37" y="22" width="3" height="18"/><rect x="11" y="28" width="26" height="2"/></svg>`,
+    sizes: ['0,40 m (Banqueta)', '0,60 m (Banco)', '1,00 m (Banco)', '1,20 m (Banco)', 'Sob medida'],
+    products: [
+      { name: 'Banqueta Industrial', desc: 'Altura de bar, assento redondo. Ícone do design industrial.' },
+      { name: 'Banco Linea', desc: 'Banco comprido para entradas e halls. Elegante e funcional.' },
+      { name: 'Banqueta Cross', desc: 'Base em X com assento quadrado. Design contemporâneo marcante.' },
+      { name: 'Banco Jardim', desc: 'Estrutura robusta para área externa. Resistente e durável.' },
+    ]
+  },
+  {
+    id: 'suportes-plantas',
+    name: 'Suportes para Plantas',
+    desc: 'Suportes e cachepôs metálicos para plantas. Valorize sua decoração verde.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><path d="M24 40 L24 20"/><circle cx="24" cy="14" r="8" stroke-dasharray="2,2"/><path d="M20 38 L28 38 L30 46 L18 46 Z"/></svg>`,
+    sizes: ['Pequeno', 'Médio', 'Grande', 'Tripé Pequeno', 'Tripé Grande', 'Sob medida'],
+    products: [
+      { name: 'Suporte Tripé', desc: 'Três pernas elegantes com acabamento fino. O clássico dos interiores.' },
+      { name: 'Suporte Escada', desc: 'Formato de escada com vários degraus. Múltiplas plantas em um só peça.' },
+      { name: 'Suporte Minimalista', desc: 'Um único tubo com base circular. Pureza de forma e função.' },
+      { name: 'Suporte Suspense', desc: 'Fixação na parede com braço saliente. Para plantas pendentes.' },
+    ]
+  },
+  {
+    id: 'moveis-comerciais',
+    name: 'Móveis Comerciais',
+    desc: 'Gôndolas, expositores, balcões e estruturas para lojas, cafeterias e escritórios.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><rect x="4" y="8" width="40" height="32"/><rect x="4" y="20" width="40" height="2"/><path d="M16 8 L16 40"/><path d="M32 8 L32 40"/></svg>`,
+    sizes: ['1,00 m', '1,20 m', '1,50 m', '1,80 m', '2,00 m', 'Sob medida'],
+    products: [
+      { name: 'Gondola Simples', desc: 'Expositor de um lado. Para lojas, papelarias e boutiques.' },
+      { name: 'Gondola Dupla', desc: 'Expositor dos dois lados. Máximo aproveitamento do espaço.' },
+      { name: 'Balcão Vitrine', desc: 'Balcão com estrutura para vidro. Expositores premium.' },
+      { name: 'Rack Expositor', desc: 'Para roupas, acessórios e artigos de moda. Estilo e funcionalidade.' },
+    ]
+  },
+  {
+    id: 'estruturas',
+    name: 'Estruturas Metálicas',
+    desc: 'Coberturas, pergolados, suportes e estruturas personalizadas. Projetos especiais.',
+    icon: `<svg viewBox="0 0 48 48" fill="none" stroke="rgba(26,107,255,0.4)" stroke-width="1.2"><path d="M4 40 L24 8 L44 40 Z"/><path d="M8 40 L8 28 M40 40 L40 28 M20 40 L20 22 M28 40 L28 22"/><path d="M4 40 L44 40"/></svg>`,
+    sizes: ['Projeto Residencial', 'Projeto Comercial', 'Estrutura Coberta', 'Pergolado', 'Sob medida'],
+    products: [
+      { name: 'Pergolado Moderno', desc: 'Estrutura aberta para área externa. Design contemporâneo e robusto.' },
+      { name: 'Cobertura Metálica', desc: 'Estrutura para telha ou policarbonato. Resistência e estilo.' },
+      { name: 'Suporte Tv/Parede', desc: 'Painéis e suportes para TVs e monitores. Instalação limpa.' },
+      { name: 'Estrutura Mezanino', desc: 'Para aproveitamento vertical de espaços. Projetos sob consulta.' },
+    ]
+  },
+];
+
+const colors = [
+  { name: 'Preto Microtexturizado', value: '#1a1a1a', border: '#333' },
+  { name: 'Branco', value: '#e8e8e8', border: '#ccc' },
+  { name: 'Dourado', value: '#c9a84c', border: '#b8962a' },
+];
+
+// ===== BUILD CATEGORY CARDS =====
+function buildCategories() {
+  const grid = document.getElementById('catGrid');
+  grid.innerHTML = categories.map((cat, i) => `
+    <div class="cat-card" onclick="openCategory(${i})">
+      <div class="cat-card-img">
+        <span class="cat-num">0${i+1 < 10 ? i+1 : i+1}</span>
+        ${cat.catImg
+          ? `<img src="${cat.catImg}" alt="${cat.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`
+          : `<div class="cat-placeholder">${cat.icon}<span>Foto da categoria</span></div>`
+        }
+      </div>
+      <div class="cat-card-body">
+        <div class="label" style="margin-bottom:6px">${cat.products.length} modelos</div>
+        <h3>${cat.name}</h3>
+        <p>${cat.desc}</p>
+        <button class="btn-ver">
+          Ver modelos
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== OPEN CATEGORY =====
+function openCategory(idx) {
+  const cat = categories[idx];
+  const drawer = document.getElementById('drawer');
+  const content = document.getElementById('drawerContent');
+
+  content.innerHTML = `
+    <div class="drawer-close">
+      <div class="drawer-breadcrumb">Catálogo <span>/ ${cat.name}</span></div>
+      <button class="drawer-close-btn" onclick="closeDrawer()">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-cat-header">
+        <div class="label">${cat.products.length} modelos disponíveis</div>
+        <h2>${cat.name}</h2>
+        <p>${cat.desc}</p>
+      </div>
+      <div class="products-grid">
+        ${cat.products.map((p, pi) => `
+          <div class="prod-card" onclick="openProduct(${idx}, ${pi})">
+            <div class="prod-card-img" style="position:relative;overflow:hidden;">
+              ${p.img
+                ? `<img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`
+                : `<div class="prod-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Foto do produto</span>
+              </div>`}
+            </div>
+            <div class="prod-card-info">
+              <div class="label" style="margin-bottom:4px">Sob medida</div>
+              <h4>${p.name}</h4>
+              <p>${p.desc}</p>
+              <div class="prod-card-actions">
+                <button class="btn-sm btn-sm-blue" onclick="event.stopPropagation(); openProduct(${idx},${pi})">
+                  Detalhes
+                </button>
+                <a class="btn-sm btn-sm-ghost" href="${buildWppLink(p.name, cat.name, '', '')}" target="_blank" onclick="event.stopPropagation()">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor" stroke="none"/></svg>
+                  Orçar
+                </a>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  showDrawer();
+}
+
+// ===== OPEN PRODUCT =====
+let selectedSize = '';
+let selectedColor = '';
+
+function openProduct(catIdx, prodIdx) {
+  const cat = categories[catIdx];
+  const prod = cat.products[prodIdx];
+  selectedSize = cat.sizes[0];
+  selectedColor = colors[0].name;
+
+  const drawer = document.getElementById('drawer');
+  const content = document.getElementById('drawerContent');
+
+  content.innerHTML = `
+    <div class="drawer-close">
+      <div class="drawer-breadcrumb">
+        <span style="cursor:pointer;color:var(--white-dim)" onclick="openCategory(${catIdx})">${cat.name}</span>
+        <span> / ${prod.name}</span>
+      </div>
+      <button class="drawer-close-btn" onclick="closeDrawer()">
+        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <div class="prod-detail-img" style="background: #111; overflow:hidden;">
+        ${prod.img
+          ? `<img src="${prod.img}" alt="${prod.name}" style="width:100%;height:100%;object-fit:cover;">`
+          : `<div style="display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.1);z-index:1">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase">Foto Principal — ${prod.name}</span>
+        </div>`}
+      </div>
+      <div class="prod-detail-thumb-row">
+        ${[1,2,3,4].map((n,i) => `
+          <div class="thumb ${i===0?'active':''}" onclick="selectThumb(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="label" style="margin-bottom:6px">${cat.name}</div>
+      <h2 class="prod-detail-name">${prod.name}</h2>
+      <p class="prod-detail-tagline">${prod.desc}</p>
+
+      <div class="prod-detail-section">
+        <label>Medida / Tamanho</label>
+        <div class="size-opts" id="sizeOpts">
+          ${cat.sizes.map((s, si) => `
+            <div class="size-opt ${si===0?'active':''}" onclick="selectSize(this, '${s}')">${s}</div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="prod-detail-section">
+        <label>Cor / Acabamento</label>
+        <div class="color-opts">
+          ${colors.map((c, ci) => `
+            <div class="color-opt ${ci===0?'active':''}" onclick="selectColor(this, '${c.name}')">
+              <div class="color-swatch" style="background:${c.value};border-color:${ci===0?'var(--blue)':c.border}"></div>
+              <span>${c.name.split(' ')[0]}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="prod-detail-section">
+        <label>Observações (opcional)</label>
+        <textarea class="obs-input" id="obsInput" placeholder="Dimensões personalizadas, informações adicionais, referência de uso..."></textarea>
+      </div>
+
+      <div class="prod-info-grid">
+        <div class="prod-info-item">
+          <span>Fabricação</span><span>Sob medida</span>
+        </div>
+        <div class="prod-info-item">
+          <span>Material</span><span>Metalon / Aço</span>
+        </div>
+        <div class="prod-info-item">
+          <span>Envio</span><span>Todo o Brasil</span>
+        </div>
+        <div class="prod-info-item">
+          <span>Montagem</span><span>Desmontado c/ parafusos</span>
+        </div>
+      </div>
+
+      <button class="btn-wpp" onclick="pedirOrcamento('${prod.name}', '${cat.name}')">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Solicitar Orçamento no WhatsApp
+      </button>
+    </div>
+  `;
+
+  showDrawer();
+}
+
+function selectSize(el, size) {
+  selectedSize = size;
+  document.querySelectorAll('.size-opt').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function selectColor(el, color) {
+  selectedColor = color;
+  document.querySelectorAll('.color-opt').forEach(e => {
+    e.classList.remove('active');
+    const sw = e.querySelector('.color-swatch');
+    const idx = Array.from(e.parentNode.children).indexOf(e);
+    sw.style.borderColor = colors[idx].border;
+  });
+  el.classList.add('active');
+  el.querySelector('.color-swatch').style.borderColor = 'var(--blue)';
+}
+
+function selectThumb(el) {
+  document.querySelectorAll('.thumb').forEach(e => e.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function buildWppLink(prodName, catName, size, color) {
+  const obs = document.getElementById('obsInput') ? document.getElementById('obsInput').value : '';
+  let msg = `Olá, tenho interesse no modelo *${prodName}* da categoria *${catName}* da Vision Aço.`;
+  if (size) msg += `\n• Tamanho: ${size}`;
+  if (color) msg += `\n• Cor: ${color}`;
+  if (obs) msg += `\n• Obs: ${obs}`;
+  msg += `\n\nGostaria de mais informações sobre medidas, cores e orçamento.`;
+  return `https://wa.me/${WPP}?text=${encodeURIComponent(msg)}`;
+}
+
+function pedirOrcamento(prodName, catName) {
+  const obs = document.getElementById('obsInput') ? document.getElementById('obsInput').value : '';
+  window.open(buildWppLink(prodName, catName, selectedSize, selectedColor), '_blank');
+}
+
+function showDrawer() {
+  document.getElementById('overlay').classList.add('active');
+  document.getElementById('drawer').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  document.getElementById('overlay').classList.remove('active');
+  document.getElementById('drawer').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function showHome() {
+  closeDrawer();
+}
+
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+
+// Init
+buildCategories();
+</script>
 </body>
 </html>
