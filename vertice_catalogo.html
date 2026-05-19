@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vértice Decor — Arte em Corte a Laser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;--black:#0D0D0D;
+  --dark:#161616;--dark2:#1E1E1E;--dark3:#262626;
+  --white:#FAFAF8;--white-warm:#F2F0EB;--gray-light:#E8E5DF;
+  --wpp:#25D366;--wpp-dark:#1DA851;
+  --font-display:'Cormorant Garamond',serif;
+  --font-body:'Jost',sans-serif;
+  --panel-w:min(100vw,520px);
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--font-body);overflow-x:hidden;min-height:100vh}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,13,13,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.2);padding:0 20px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+.logo span{color:var(--white);font-weight:300}
+.wpp-btn{display:flex;align-items:center;gap:8px;background:var(--wpp);color:#fff;border:none;padding:8px 16px;border-radius:25px;font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:all 0.3s}
+.wpp-btn:hover{background:var(--wpp-dark);transform:translateY(-1px)}
+.wpp-btn svg{width:16px;height:16px;fill:#fff}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,rgba(201,168,76,0.08) 0%,transparent 70%)}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(201,168,76,0.03) 60px,rgba(201,168,76,0.03) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(201,168,76,0.03) 60px,rgba(201,168,76,0.03) 61px)}
+.hero-tag{font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,0.3);padding:6px 16px;border-radius:20px;margin-bottom:24px;display:inline-block}
+.hero h1{font-family:var(--font-display);font-size:clamp(38px,8vw,72px);font-weight:300;line-height:1.1;margin-bottom:16px;color:var(--white)}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:15px;color:rgba(250,250,248,0.6);max-width:400px;line-height:1.7;margin-bottom:40px}
+.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--gold);line-height:1}
+.stat-label{font-size:11px;color:rgba(250,250,248,0.5);letter-spacing:1px;margin-top:4px}
+.hero-divider{width:1px;height:40px;background:rgba(201,168,76,0.3);align-self:center}
+
+/* SECTION */
+.section{padding:60px 20px}
+.section-header{text-align:center;margin-bottom:40px}
+.section-title{font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:300;color:var(--white);margin-bottom:8px}
+.section-title span{color:var(--gold);font-style:italic}
+.section-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:12px auto 0}
+
+/* CATEGORIES GRID */
+.categories-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:600px;margin:0 auto}
+.cat-card{position:relative;border-radius:12px;overflow:hidden;background:var(--dark2);border:1px solid rgba(201,168,76,0.15);cursor:pointer;transition:all 0.3s;aspect-ratio:1;display:flex;flex-direction:column;justify-content:flex-end}
+.cat-card:hover{border-color:rgba(201,168,76,0.5);transform:translateY(-3px)}
+.cat-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.cat-card:hover img{transform:scale(1.05)}
+.cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,13,13,0.92) 0%,rgba(13,13,13,0.4) 50%,transparent 100%)}
+.cat-card:hover .cat-overlay{background:linear-gradient(to top,rgba(13,13,13,0.95) 0%,rgba(201,168,76,0.1) 100%)}
+.cat-content{position:relative;z-index:2;padding:16px}
+.cat-num{font-family:var(--font-display);font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
+.cat-name{font-family:var(--font-display);font-size:18px;font-weight:600;color:var(--white);line-height:1.2;margin-bottom:4px}
+.cat-count{font-size:11px;color:rgba(250,250,248,0.5)}
+.cat-arrow{position:absolute;top:12px;right:12px;z-index:2;width:28px;height:28px;border-radius:50%;background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.cat-card:hover .cat-arrow{background:var(--gold);border-color:var(--gold)}
+.cat-arrow svg{width:12px;height:12px;fill:var(--white)}
+
+/* placeholder para imagens ausentes */
+.cat-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0.15}
+.cat-placeholder svg{width:48px;height:48px;fill:var(--gold)}
+.cat-placeholder span{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+
+/* PANEL OVERLAY */
+.panel-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(4px)}
+.panel-overlay.active{opacity:1;pointer-events:all}
+
+/* PANELS */
+.panel{position:fixed;top:0;right:0;bottom:0;width:var(--panel-w);background:var(--dark);z-index:201;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.25,0.8,0.25,1);display:flex;flex-direction:column;overflow:hidden}
+.panel.active{transform:translateX(0)}
+.panel-header{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(201,168,76,0.15);background:var(--dark);flex-shrink:0}
+.panel-back{background:none;border:1px solid rgba(201,168,76,0.3);color:var(--gold);width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.3s}
+.panel-back:hover{background:var(--gold);color:var(--black)}
+.panel-back svg{width:14px;height:14px;fill:currentColor}
+.panel-title{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--white)}
+.panel-subtitle{font-size:11px;color:rgba(250,250,248,0.4);letter-spacing:1px;margin-top:2px}
+.panel-body{flex:1;overflow-y:auto;padding:16px}
+
+/* FILTERS */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,0.1)}
+.filter-btn{font-family:var(--font-body);font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;border:1px solid rgba(201,168,76,0.25);background:transparent;color:rgba(250,250,248,0.6);cursor:pointer;transition:all 0.3s;white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:var(--black)}
+
+/* PRODUCTS GRID */
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prod-card{background:var(--dark2);border-radius:10px;overflow:hidden;border:1px solid rgba(201,168,76,0.1);cursor:pointer;transition:all 0.3s}
+.prod-card:hover{border-color:rgba(201,168,76,0.4);transform:translateY(-2px)}
+.prod-img{aspect-ratio:1;overflow:hidden;background:var(--dark3);display:flex;align-items:center;justify-content:center;position:relative}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.prod-card:hover .prod-img img{transform:scale(1.05)}
+.prod-img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0.2;width:100%;height:100%;position:absolute}
+.prod-img-placeholder svg{width:32px;height:32px;fill:var(--gold)}
+.prod-img-placeholder span{font-size:9px;letter-spacing:1px;color:var(--gold)}
+.prod-info{padding:10px}
+.prod-name{font-family:var(--font-display);font-size:13px;color:var(--white);margin-bottom:4px}
+.prod-sub{font-size:10px;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+
+/* PRODUCT DETAIL PANEL */
+.prod-detail{position:fixed;top:0;right:0;bottom:0;width:var(--panel-w);background:var(--dark);z-index:202;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.25,0.8,0.25,1);display:flex;flex-direction:column;overflow:hidden}
+.prod-detail.active{transform:translateX(0)}
+.prod-detail-img{width:100%;border-radius:10px;margin-bottom:20px;max-height:320px;object-fit:cover;background:var(--dark3)}
+.prod-detail-img-placeholder{width:100%;height:240px;border-radius:10px;margin-bottom:20px;background:var(--dark3);display:flex;align-items:center;justify-content:center;opacity:0.3}
+.prod-detail-img-placeholder svg{width:64px;height:64px;fill:var(--gold)}
+.prod-detail-name{font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--white);margin-bottom:4px}
+.prod-detail-sub{font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.prod-options{margin-bottom:20px}
+.prod-options h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(250,250,248,0.5);margin-bottom:10px}
+.size-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.size-btn{padding:8px;border:1px solid rgba(201,168,76,0.25);background:transparent;color:var(--white);font-family:var(--font-body);font-size:12px;border-radius:8px;cursor:pointer;transition:all 0.3s;text-align:center}
+.size-btn:hover,.size-btn.selected{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.color-grid{display:flex;gap:10px}
+.color-btn{width:32px;height:32px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all 0.3s;display:flex;align-items:center;justify-content:center}
+.color-btn.selected{border-color:var(--gold)}
+.color-btn svg{width:14px;height:14px;fill:rgba(255,255,255,0.8);opacity:0;transition:opacity 0.2s}
+.color-btn.selected svg{opacity:1}
+
+/* PERSONALIZAÇÃO */
+.personalization{background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:16px;margin-bottom:20px}
+.personalization h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.pers-input{width:100%;background:var(--dark3);border:1px solid rgba(201,168,76,0.25);color:var(--white);font-family:var(--font-display);font-size:20px;text-align:center;padding:10px;border-radius:8px;outline:none;transition:border 0.3s}
+.pers-input:focus{border-color:var(--gold)}
+.pers-preview{margin-top:10px;text-align:center;font-family:var(--font-display);font-size:28px;color:var(--gold);font-weight:600;min-height:40px;letter-spacing:4px}
+
+/* CTA */
+.cta-wpp{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wpp);color:#fff;border:none;width:100%;padding:16px;border-radius:12px;font-family:var(--font-body);font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.3s;margin-top:8px}
+.cta-wpp:hover{background:var(--wpp-dark);transform:translateY(-1px)}
+.cta-wpp svg{width:20px;height:20px;fill:#fff}
+
+/* FOOTER */
+.footer{background:var(--dark);border-top:1px solid rgba(201,168,76,0.1);padding:40px 24px;text-align:center}
+.footer-logo{font-family:var(--font-display);font-size:28px;font-weight:300;color:var(--gold);letter-spacing:4px;margin-bottom:8px}
+.footer-tagline{font-size:12px;color:rgba(250,250,248,0.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.footer-text{font-size:12px;color:rgba(250,250,248,0.3);line-height:1.8}
+
+/* EMPTY STATE */
+.empty-state{grid-column:1/-1;text-align:center;padding:40px;color:rgba(250,250,248,0.3);font-style:italic;font-family:var(--font-display);font-size:16px}
+
+/* NOTA DEMO */
+.demo-note{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:10px 16px;text-align:center;font-size:11px;color:rgba(201,168,76,0.7);letter-spacing:1px;margin:0 20px 20px;max-width:600px;margin-left:auto;margin-right:auto}
+
+.no-scroll{overflow:hidden}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">Vértice<span> Decor</span></div>
+  <a href="https://wa.me/5500000000000?text=Olá!%20Vim%20pelo%20catálogo%20e%20gostaria%20de%20mais%20informações!"
+     class="wpp-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">✦ Arte em Metal ✦</div>
+  <h1>Arte em<br><em>Corte a Laser</em></h1>
+  <p>Peças exclusivas em metal, cortadas a laser com precisão milimétrica para transformar seus espaços.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">160+</div>
+      <div class="stat-label">Modelos</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">Categorias</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Acabamentos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Nosso <span>Catálogo</span></h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="demo-note">⚠ Visualização de estrutura — as imagens carregam da pasta <code>img/</code> no servidor</div>
+  <div class="categories-grid" id="catGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Vértice Decor</div>
+  <div class="footer-tagline">Arte em Corte a Laser</div>
+  <div class="footer-text">
+    Peças exclusivas em metal cortado a laser<br>
+    Personalizadas sob encomenda · Entrega em todo o Brasil
+  </div>
+</footer>
+
+<!-- OVERLAY -->
+<div class="panel-overlay" id="overlay"></div>
+
+<!-- CATEGORY PANEL -->
+<div class="panel" id="catPanel">
+  <div class="panel-header">
+    <button class="panel-back" onclick="closePanel()">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    </button>
+    <div>
+      <div class="panel-title" id="panelTitle"></div>
+      <div class="panel-subtitle" id="panelSubtitle"></div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="filters" id="filterBtns"></div>
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL PANEL -->
+<div class="prod-detail panel" id="prodPanel">
+  <div class="panel-header">
+    <button class="panel-back" onclick="closeProdPanel()">
+      <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+    </button>
+    <div>
+      <div class="panel-title" id="prodPanelTitle"></div>
+      <div class="panel-subtitle" id="prodPanelSub"></div>
+    </div>
+  </div>
+  <div class="panel-body" id="prodPanelBody"></div>
+</div>
+
+<script>
+const WPP = "5500000000000";
+
+const CAT_META = {
+  "numericas": {"num": "01", "name": "Numéricas Decorativas", "hasNum": true, "subcats": ["Todos", "Floral", "Pássaro", "Gato", "Pets", "Ornamental", "Premium"], "subcat_map": {"floral": [1,2,3,6,7,11,12,13,21,28,29,30,31], "passaro": [4,5,16,36], "gato": [19,20,21,29,37,38], "pet": [16,17,18,39,40], "ornamental": [8,9,10,22,23,24,25,30,32], "premium": [22,33,34,35]}},
+  "animal": {"num": "02", "name": "Decoração Animal", "hasNum": false, "subcats": ["Todos", "Cavalos", "Aves", "Safari", "Outros"], "subcat_map": {"cavalos": [1,2,3,4,5,6,7,8,9,10], "aves": [11,12,13,14], "safari": [15,16,17,18,19,20,21], "outros": [22,23,24]}},
+  "mandalas": {"num": "03", "name": "Mandalas Decorativas", "hasNum": false, "subcats": ["Todos", "Árvore da Vida", "Mandalas", "Buda", "Yoga", "Espiritual"], "subcat_map": {"arvore_vida": [2,3,7], "mandalas": [1], "buda": [5], "yoga": [6], "espiritual": [4]}},
+  "automotiva": {"num": "04", "name": "Decoração Automotiva", "hasNum": false, "subcats": ["Todos", "Esportivos", "Clássicos", "Fórmula 1"], "subcat_map": {"esportivos": [1,5,8,10,11,12,16,17], "classicos": [6,7,13,14], "formula1": [4,9,15,3]}},
+  "placas": {"num": "05", "name": "Placas Decorativas", "hasNum": false, "subcats": ["Todos", "Modernas", "Minimalistas", "Decorativas"], "subcat_map": {"modernas": [1,3], "minimalistas": [2], "decorativas": [4,5]}},
+  "fazenda": {"num": "06", "name": "Fazenda & Chácara", "hasNum": false, "subcats": ["Todos", "Tratores", "Gado", "Cavalos", "Rural"], "subcat_map": {"tratores": [1,4,5], "gado": [2,7,8], "cavalos": [14,15,16,17,18,19,20], "rural": [3,6,9,10,11,12,13]}}
+};
+
+const ALL_PRODS = {
+  "numericas": [
+    {"id":"numericas_01","img":"img/numericas_01.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_02","img":"img/numericas_02.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_03","img":"img/numericas_03.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_04","img":"img/numericas_04.jpg","subcat":"passaro","subcatLabel":"Pássaro"},
+    {"id":"numericas_05","img":"img/numericas_05.jpg","subcat":"passaro","subcatLabel":"Pássaro"},
+    {"id":"numericas_06","img":"img/numericas_06.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_07","img":"img/numericas_07.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_08","img":"img/numericas_08.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_09","img":"img/numericas_09.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_10","img":"img/numericas_10.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_11","img":"img/numericas_11.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_12","img":"img/numericas_12.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_13","img":"img/numericas_13.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_14","img":"img/numericas_14.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_15","img":"img/numericas_15.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_16","img":"img/numericas_16.jpg","subcat":"pet","subcatLabel":"Pets"},
+    {"id":"numericas_17","img":"img/numericas_17.jpg","subcat":"pet","subcatLabel":"Pets"},
+    {"id":"numericas_18","img":"img/numericas_18.jpg","subcat":"pet","subcatLabel":"Pets"},
+    {"id":"numericas_19","img":"img/numericas_19.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_20","img":"img/numericas_20.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_21","img":"img/numericas_21.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_22","img":"img/numericas_22.jpg","subcat":"premium","subcatLabel":"Premium"},
+    {"id":"numericas_23","img":"img/numericas_23.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_24","img":"img/numericas_24.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_25","img":"img/numericas_25.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_26","img":"img/numericas_26.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_27","img":"img/numericas_27.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_28","img":"img/numericas_28.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_29","img":"img/numericas_29.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_30","img":"img/numericas_30.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_31","img":"img/numericas_31.jpg","subcat":"floral","subcatLabel":"Floral"},
+    {"id":"numericas_32","img":"img/numericas_32.jpg","subcat":"ornamental","subcatLabel":"Ornamental"},
+    {"id":"numericas_33","img":"img/numericas_33.jpg","subcat":"premium","subcatLabel":"Premium"},
+    {"id":"numericas_34","img":"img/numericas_34.jpg","subcat":"premium","subcatLabel":"Premium"},
+    {"id":"numericas_35","img":"img/numericas_35.jpg","subcat":"premium","subcatLabel":"Premium"},
+    {"id":"numericas_36","img":"img/numericas_36.jpg","subcat":"passaro","subcatLabel":"Pássaro"},
+    {"id":"numericas_37","img":"img/numericas_37.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_38","img":"img/numericas_38.jpg","subcat":"gato","subcatLabel":"Gato"},
+    {"id":"numericas_39","img":"img/numericas_39.jpg","subcat":"pet","subcatLabel":"Pets"},
+    {"id":"numericas_40","img":"img/numericas_40.jpg","subcat":"pet","subcatLabel":"Pets"}
+  ],
+  "animal": [
+    {"id":"animal_01","img":"img/animal_01.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_02","img":"img/animal_02.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_03","img":"img/animal_03.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_04","img":"img/animal_04.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_05","img":"img/animal_05.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_06","img":"img/animal_06.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_07","img":"img/animal_07.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_08","img":"img/animal_08.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_09","img":"img/animal_09.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_10","img":"img/animal_10.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"animal_11","img":"img/animal_11.jpg","subcat":"aves","subcatLabel":"Aves"},
+    {"id":"animal_12","img":"img/animal_12.jpg","subcat":"aves","subcatLabel":"Aves"},
+    {"id":"animal_13","img":"img/animal_13.jpg","subcat":"aves","subcatLabel":"Aves"},
+    {"id":"animal_14","img":"img/animal_14.jpg","subcat":"aves","subcatLabel":"Aves"},
+    {"id":"animal_15","img":"img/animal_15.jpg","subcat":"safari","subcatLabel":"Safari"},
+    {"id":"animal_16","img":"img/animal_16.jpg","subcat":"safari","subcatLabel":"Safari"},
+    {"id":"animal_17","img":"img/animal_17.jpg","subcat":"safari","subcatLabel":"Safari"},
+    {"id":"animal_18","img":"img/animal_18.jpg","subcat":"safari","subcatLabel":"Safari"},
+    {"id":"animal_19","img":"img/animal_19.jpg","subcat":"safari","subcatLabel":"Safari"},
+    {"id":"animal_20","img":"img/animal_20.jpg","subcat":"safari","subcatLabel":"Safari"}
+  ],
+  "mandalas": [
+    {"id":"mandalas_01","img":"img/mandalas_01.jpg","subcat":"mandalas","subcatLabel":"Mandalas"},
+    {"id":"mandalas_02","img":"img/mandalas_02.jpg","subcat":"arvore_vida","subcatLabel":"Árvore da Vida"},
+    {"id":"mandalas_03","img":"img/mandalas_03.jpg","subcat":"arvore_vida","subcatLabel":"Árvore da Vida"},
+    {"id":"mandalas_04","img":"img/mandalas_04.jpg","subcat":"espiritual","subcatLabel":"Espiritual"},
+    {"id":"mandalas_05","img":"img/mandalas_05.jpg","subcat":"buda","subcatLabel":"Buda"},
+    {"id":"mandalas_06","img":"img/mandalas_06.jpg","subcat":"yoga","subcatLabel":"Yoga"},
+    {"id":"mandalas_07","img":"img/mandalas_07.jpg","subcat":"arvore_vida","subcatLabel":"Árvore da Vida"}
+  ],
+  "automotiva": [
+    {"id":"automotiva_01","img":"img/automotiva_01.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_02","img":"img/automotiva_02.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_03","img":"img/automotiva_03.jpg","subcat":"formula1","subcatLabel":"Fórmula 1"},
+    {"id":"automotiva_04","img":"img/automotiva_04.jpg","subcat":"formula1","subcatLabel":"Fórmula 1"},
+    {"id":"automotiva_05","img":"img/automotiva_05.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_06","img":"img/automotiva_06.jpg","subcat":"classicos","subcatLabel":"Clássicos"},
+    {"id":"automotiva_07","img":"img/automotiva_07.jpg","subcat":"classicos","subcatLabel":"Clássicos"},
+    {"id":"automotiva_08","img":"img/automotiva_08.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_09","img":"img/automotiva_09.jpg","subcat":"formula1","subcatLabel":"Fórmula 1"},
+    {"id":"automotiva_10","img":"img/automotiva_10.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_11","img":"img/automotiva_11.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_12","img":"img/automotiva_12.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_13","img":"img/automotiva_13.jpg","subcat":"classicos","subcatLabel":"Clássicos"},
+    {"id":"automotiva_14","img":"img/automotiva_14.jpg","subcat":"classicos","subcatLabel":"Clássicos"},
+    {"id":"automotiva_15","img":"img/automotiva_15.jpg","subcat":"formula1","subcatLabel":"Fórmula 1"},
+    {"id":"automotiva_16","img":"img/automotiva_16.jpg","subcat":"esportivos","subcatLabel":"Esportivos"},
+    {"id":"automotiva_17","img":"img/automotiva_17.jpg","subcat":"esportivos","subcatLabel":"Esportivos"}
+  ],
+  "placas": [
+    {"id":"placas_01","img":"img/placas_01.jpg","subcat":"modernas","subcatLabel":"Modernas"},
+    {"id":"placas_02","img":"img/placas_02.jpg","subcat":"minimalistas","subcatLabel":"Minimalistas"},
+    {"id":"placas_03","img":"img/placas_03.jpg","subcat":"modernas","subcatLabel":"Modernas"},
+    {"id":"placas_04","img":"img/placas_04.jpg","subcat":"decorativas","subcatLabel":"Decorativas"},
+    {"id":"placas_05","img":"img/placas_05.jpg","subcat":"decorativas","subcatLabel":"Decorativas"}
+  ],
+  "fazenda": [
+    {"id":"fazenda_01","img":"img/fazenda_01.jpg","subcat":"tratores","subcatLabel":"Tratores"},
+    {"id":"fazenda_02","img":"img/fazenda_02.jpg","subcat":"gado","subcatLabel":"Gado"},
+    {"id":"fazenda_03","img":"img/fazenda_03.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_04","img":"img/fazenda_04.jpg","subcat":"tratores","subcatLabel":"Tratores"},
+    {"id":"fazenda_05","img":"img/fazenda_05.jpg","subcat":"tratores","subcatLabel":"Tratores"},
+    {"id":"fazenda_06","img":"img/fazenda_06.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_07","img":"img/fazenda_07.jpg","subcat":"gado","subcatLabel":"Gado"},
+    {"id":"fazenda_08","img":"img/fazenda_08.jpg","subcat":"gado","subcatLabel":"Gado"},
+    {"id":"fazenda_09","img":"img/fazenda_09.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_10","img":"img/fazenda_10.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_11","img":"img/fazenda_11.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_12","img":"img/fazenda_12.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_13","img":"img/fazenda_13.jpg","subcat":"rural","subcatLabel":"Rural"},
+    {"id":"fazenda_14","img":"img/fazenda_14.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_15","img":"img/fazenda_15.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_16","img":"img/fazenda_16.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_17","img":"img/fazenda_17.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_18","img":"img/fazenda_18.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_19","img":"img/fazenda_19.jpg","subcat":"cavalos","subcatLabel":"Cavalos"},
+    {"id":"fazenda_20","img":"img/fazenda_20.jpg","subcat":"cavalos","subcatLabel":"Cavalos"}
+  ]
+};
+
+const SIZES = ['30×30cm','40×40cm','50×50cm','60×60cm','80×80cm','100×100cm'];
+const COLORS = [
+  {name:'Preto Fosco',hex:'#1a1a1a'},
+  {name:'Branco Fosco',hex:'#f0f0f0'},
+  {name:'Dourado',hex:'#C9A84C'}
+];
+
+const WPP_SVG = `<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+const ARROW_SVG = `<svg viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>`;
+const CHECK_SVG = `<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`;
+const IMG_ICON = `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`;
+
+let currentCat = null;
+let currentFilter = 'Todos';
+let currentProd = null;
+let selectedSize = null;
+let selectedColor = null;
+let numInput = '';
+let nameInput = '';
+let touchStartX = 0;
+
+const CATS_ORDER = ['numericas','animal','mandalas','automotiva','placas','fazenda'];
+
+// Tenta carregar imagem; se falhar, mostra placeholder
+function imgOrPlaceholder(src, alt, className) {
+  return `<img src="${src}" alt="${alt}" class="${className}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="${className.includes('detail') ? 'prod-detail-img-placeholder' : 'prod-img-placeholder'}" style="display:none">${IMG_ICON}<span>${alt}</span></div>`;
+}
+
+function buildCatGrid() {
+  const grid = document.getElementById('catGrid');
+  grid.innerHTML = '';
+  CATS_ORDER.forEach(key => {
+    const m = CAT_META[key];
+    const prods = ALL_PRODS[key] || [];
+    const firstImg = prods[0]?.img || '';
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+    card.onclick = () => openCatPanel(key);
+    card.innerHTML = `
+      ${firstImg ? `<img src="${firstImg}" alt="${m.name}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.5s" onerror="this.style.display='none'">` : ''}
+      <div class="cat-placeholder" style="${firstImg ? '' : 'opacity:0.2'}">${IMG_ICON}<span>${m.num}</span></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">${ARROW_SVG}</div>
+      <div class="cat-content">
+        <div class="cat-num">${m.num}</div>
+        <div class="cat-name">${m.name}</div>
+        <div class="cat-count">${prods.length > 0 ? prods.length + ' modelos' : 'Em breve'}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openCatPanel(key) {
+  currentCat = key;
+  currentFilter = 'Todos';
+  const m = CAT_META[key];
+  document.getElementById('panelTitle').textContent = m.name;
+  document.getElementById('panelSubtitle').textContent = m.num + ' — Selecione um modelo';
+  buildFilters();
+  buildProducts();
+  document.getElementById('catPanel').classList.add('active');
+  document.getElementById('overlay').classList.add('active');
+  document.body.classList.add('no-scroll');
+}
+
+function buildFilters() {
+  const m = CAT_META[currentCat];
+  const div = document.getElementById('filterBtns');
+  div.innerHTML = '';
+  m.subcats.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (s === currentFilter ? ' active' : '');
+    btn.textContent = s;
+    btn.onclick = () => { currentFilter = s; buildFilters(); buildProducts(); };
+    div.appendChild(btn);
+  });
+}
+
+function buildProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = '';
+  const prods = ALL_PRODS[currentCat] || [];
+  const filtered = currentFilter === 'Todos'
+    ? prods
+    : prods.filter(p => p.subcatLabel === currentFilter);
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="empty-state">Em breve novos modelos</div>';
+    return;
+  }
+  filtered.forEach((prod, i) => {
+    const card = document.createElement('div');
+    card.className = 'prod-card';
+    card.onclick = () => openProdPanel(prod);
+    card.innerHTML = `
+      <div class="prod-img" style="position:relative">
+        <img src="${prod.img}" alt="${prod.subcatLabel}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="prod-img-placeholder" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0.2">${IMG_ICON}<span style="font-size:9px;letter-spacing:1px;color:var(--gold)">${prod.id}</span></div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-sub">${prod.subcatLabel}</div>
+        <div class="prod-name">Modelo ${String(i+1).padStart(2,'0')}</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openProdPanel(prod) {
+  currentProd = prod;
+  selectedSize = null;
+  selectedColor = null;
+  const m = CAT_META[currentCat];
+  document.getElementById('prodPanelTitle').textContent = prod.subcatLabel;
+  document.getElementById('prodPanelSub').textContent = m.name;
+
+  const isNum = m.hasNum && currentCat === 'numericas';
+  const isFaz = currentCat === 'fazenda';
+
+  let persHTML = '';
+  if (isNum) {
+    persHTML = `<div class="personalization">
+      <h4>✦ Personalizar Número</h4>
+      <input class="pers-input" type="text" maxlength="6" placeholder="Ex: 123" id="numField" oninput="updatePreview(this.value,'num')" value="${numInput}">
+      <div class="pers-preview" id="persPreview">${numInput || '—'}</div>
+    </div>`;
+  } else if (isFaz) {
+    persHTML = `<div class="personalization">
+      <h4>✦ Personalizar Nome</h4>
+      <input class="pers-input" type="text" maxlength="20" placeholder="Ex: Fazenda Boa Vista" id="nameField" oninput="updatePreview(this.value,'name')" value="${nameInput}">
+      <div class="pers-preview" id="persPreview" style="font-size:18px">${nameInput || '—'}</div>
+    </div>`;
+  }
+
+  const sizeBtns = SIZES.map(s =>
+    `<button class="size-btn" onclick="selectSize(this,'${s}')">${s}</button>`
+  ).join('');
+
+  const colorBtns = COLORS.map(c =>
+    `<button class="color-btn" onclick="selectColor(this,'${c.name}')" style="background:${c.hex}" title="${c.name}">${CHECK_SVG}</button>`
+  ).join('');
+
+  document.getElementById('prodPanelBody').innerHTML = `
+    <img src="${prod.img}" alt="${prod.subcatLabel}" class="prod-detail-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="prod-detail-img-placeholder" style="display:none">${IMG_ICON}</div>
+    <div class="prod-detail-name">${prod.subcatLabel}</div>
+    <div class="prod-detail-sub">${m.name}</div>
+    ${persHTML}
+    <div class="prod-options">
+      <h4>Tamanho</h4>
+      <div class="size-grid">${sizeBtns}</div>
+    </div>
+    <div class="prod-options">
+      <h4>Acabamento</h4>
+      <div class="color-grid">${colorBtns}</div>
+    </div>
+    <a class="cta-wpp" href="#" onclick="openWpp(event)">${WPP_SVG} Pedir via WhatsApp</a>
+  `;
+
+  document.getElementById('prodPanel').classList.add('active');
+}
+
+function updatePreview(val, type) {
+  if (type === 'num') numInput = val;
+  else nameInput = val;
+  const el = document.getElementById('persPreview');
+  if (el) el.textContent = val || '—';
+}
+
+function selectSize(btn, size) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedSize = size;
+}
+
+function selectColor(btn, color) {
+  document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedColor = color;
+}
+
+function openWpp(e) {
+  e.preventDefault();
+  const m = CAT_META[currentCat];
+  const lines = [
+    'Olá! Tenho interesse em:',
+    `📦 Categoria: ${m.name}`,
+    `🎨 Modelo: ${currentProd?.subcatLabel || ''}`,
+    selectedSize ? `📐 Tamanho: ${selectedSize}` : '',
+    selectedColor ? `🎨 Acabamento: ${selectedColor}` : '',
+    numInput ? `🔢 Número: ${numInput}` : '',
+    nameInput ? `🏡 Nome: ${nameInput}` : '',
+    '',
+    'Pode me passar mais informações?'
+  ].filter(Boolean);
+  window.open(`https://wa.me/${WPP}?text=${encodeURIComponent(lines.join('\n'))}`, '_blank');
+}
+
+function closePanel() {
+  document.getElementById('catPanel').classList.remove('active');
+  document.getElementById('overlay').classList.remove('active');
+  document.body.classList.remove('no-scroll');
+  document.getElementById('prodPanel').classList.remove('active');
+}
+
+function closeProdPanel() {
+  document.getElementById('prodPanel').classList.remove('active');
+}
+
+['catPanel','prodPanel'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+  el.addEventListener('touchend', e => {
+    if (e.changedTouches[0].clientX - touchStartX > 80) {
+      id === 'prodPanel' ? closeProdPanel() : closePanel();
+    }
+  });
+});
+
+document.getElementById('overlay').onclick = closePanel;
+
+buildCatGrid();
+</script>
+</body>
+</html>
